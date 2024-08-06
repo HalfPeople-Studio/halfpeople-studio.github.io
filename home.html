@@ -1,0 +1,613 @@
+<html><head><base href="https://HalfPeopleStudio.com">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半人工作室 - 獨立游戲開發與創新工具</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #4a90e2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://HalfPeopleStudio.com/images/indie-game-dev-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3);
+    z-index: -1;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+  }
+  
+  .projects, .tools, .team {
+    padding: 100px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: var(--accent-color);
+    position: relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--highlight-color);
+    margin: 10px auto;
+  }
+  
+  .project-grid, .tool-grid, .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .project-card, .tool-card, .team-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .project-card::before, .tool-card::before, .team-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--gradient-1);
+    opacity: 0.1;
+    transform: rotate(30deg);
+    z-index: -1;
+    transition: all 0.5s ease;
+  }
+  
+  .project-card:hover::before, .tool-card:hover::before, .team-card:hover::before {
+    transform: rotate(0deg);
+    opacity: 0.2;
+  }
+  
+  .project-card:hover, .tool-card:hover, .team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(74, 144, 226, 0.1);
+  }
+  
+  .tool-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  }
+  
+  .project-card h3, .tool-card h3, .team-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+  }
+  
+  .project-image, .team-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .project-card:hover .project-image, .team-card:hover .team-image {
+    transform: scale(1.05);
+  }
+  
+  .engine-section {
+    background: var(--gradient-2);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .engine-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://HalfPeopleStudio.com/images/circuit-pattern.png') repeat;
+    opacity: 0.1;
+    z-index: 0;
+  }
+  
+  .engine-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .engine-info {
+    flex: 1;
+    padding-right: 50px;
+  }
+  
+  .engine-image {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .engine-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .engine-image img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 50px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://HalfPeopleStudio.com/images/footer-pattern.png') repeat;
+    opacity: 0.05;
+    z-index: 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .footer-section {
+    flex: 1;
+    margin-bottom: 30px;
+    min-width: 200px;
+  }
+  
+  .footer-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: var(--highlight-color);
+  }
+  
+  .footer-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-section ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .social-icons a {
+    color: var(--text-color);
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+  }
+  
+  .copyright {
+    margin-top: 30px;
+    font-size: 0.9em;
+    opacity: 0.7;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .floating {
+    animation: float 4s ease-in-out infinite;
+  }
+</style>
+</head>
+<body>
+  <header id="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+            <li><a href="https://HalfPeopleStudio.com/about">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <h1>創造無限可能的游戲世界</h1>
+      <p>半人工作室致力於打造創新、獨特的游戲體驗和強大的開發工具</p>
+      <a href="https://HalfPeopleStudio.com/games" class="cta-button">探索我們的游戲</a>
+    </div>
+  </section>
+
+  <section class="engine-section">
+    <div class="container">
+      <h2 class="section-title">半人游戲引擎</h2>
+      <div class="engine-content">
+        <div class="engine-info">
+          <h3>為創意而生的強大工具</h3>
+          <p>我們的自主研發游戲引擎為獨立開發者提供了高效、靈活的解決方案。無論是2D還是3D游戲，半人游戲引擎都能滿足你的創意需求。</p>
+          <ul>
+            <li>高性能渲染系統</li>
+            <li>直觀的可視化編輯器</li>
+            <li>跨平台支持</li>
+            <li>豐富的資源庫和插件生態</li>
+            <li>實時協作功能</li>
+            <li>內置AI輔助工具</li>
+          </ul>
+          <a href="https://HalfPeopleStudio.com/engine" class="cta-button">深入了解</a>
+        </div>
+        <div class="engine-image">
+          <img src="https://HalfPeopleStudio.com/images/halfpeople-engine.jpg" alt="半人游戲引擎界面" width="500" height="300" class="floating">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="projects">
+    <div class="container">
+      <h2 class="section-title">我們的游戲作品</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <img src="https://HalfPeopleStudio.com/images/game1.jpg" alt="星際探險游戲截圖" class="project-image" width="300" height="200">
+          <h3>星際探險</h3>
+          <p>一款充滿想象力的科幻冒險游戲，展現我們的創意和技術實力。</p>
+          <a href="https://HalfPeopleStudio.com/games/star-explorer" class="cta-button">了解更多</a>
+        </div>
+        <div class="project-card">
+          <img src="https://HalfPeopleStudio.com/images/game2.jpg" alt="魔法學院游戲截圖" class="project-image" width="300" height="200">
+          <h3>魔法學院</h3>
+          <p>沉浸式的魔法世界RPG，讓玩家體驗成為魔法師的奇妙旅程。</p>
+          <a href="https://HalfPeopleStudio.com/games/magic-academy" class="cta-button">了解更多</a>
+        </div>
+        <div class="project-card">
+          <img src="https://HalfPeopleStudio.com/images/game3.jpg" alt="賽博朋克偵探游戲截圖" class="project-image" width="300" height="200">
+          <h3>賽博朋克偵探</h3>
+          <p>融合推理與動作元素的未來派偵探游戲，劇情豐富，玩法新穎。</p>
+          <a href="https://HalfPeopleStudio.com/games/cyberpunk-detective" class="cta-button">了解更多</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tools">
+    <div class="container">
+      <h2 class="section-title">開發工具與庫</h2>
+      <div class="tool-grid">
+        <div class="tool-card">
+          <img src="https://HalfPeopleStudio.com/images/halfmath-icon.png" alt="HalfMath圖標" class="tool-icon" width="80" height="80">
+          <h3>HalfMath C++庫</h3>
+          <p>高效的游戲數學庫，提供向量、矩陣運算等功能。</p>
+          <a href="https://HalfPeopleStudio.com/tools/halfmath" class="cta-button">查看文檔</a>
+        </div>
+        <div class="tool-card">
+          <img src="https://HalfPeopleStudio.com/images/halfrender-icon.png" alt="HalfRender圖標" class="tool-icon" width="80" height="80">
+          <h3>HalfRender 渲染庫</h3>
+          <p>靈活的跨平台渲染庫，支持多種現代圖形API。</p>
+          <a href="https://HalfPeopleStudio.com/tools/halfrender" class="cta-button">查看文檔</a>
+        </div>
+        <div class="tool-card">
+          <img src="https://HalfPeopleStudio.com/images/halfaudio-icon.png" alt="HalfAudio圖標" class="tool-icon" width="80" height="80">
+          <h3>HalfAudio 音頻引擎</h3>
+          <p>強大的音頻處理庫，為游戲提供豐富的聲音體驗。</p>
+          <a href="https://HalfPeopleStudio.com/tools/halfaudio" class="cta-button">查看文檔</a>
+        </div>
+        <div class="tool-card">
+          <img src="https://HalfPeopleStudio.com/images/halfphysics-icon.png" alt="HalfPhysics圖標" class="tool-icon" width="80" height="80">
+          <h3>HalfPhysics 物理引擎</h3>
+          <p>輕量級物理模擬庫，適用於2D和3D游戲開發。</p>
+          <a href="https://HalfPeopleStudio.com/tools/halfphysics" class="cta-button">查看文檔</a>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="https://HalfPeopleStudio.com/tools" class="cta-button">探索更多工具</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="team">
+    <div class="container">
+      <h2 class="section-title">創新團隊</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="https://HalfPeopleStudio.com/images/team-member1.jpg" alt="張三 - 首席開發者" class="team-image" width="200" height="200">
+          <h3>張三</h3>
+          <p>首席開發者</p>
+          <p>專注於游戲引擎核心架構設計和性能優化。10年游戲開發經驗。</p>
+        </div>
+        <div class="team-card">
+          <img src="https://HalfPeopleStudio.com/images/team-member2.jpg" alt="李四 - 創意總監" class="team-image" width="200" height="200">
+          <h3>李四</h3>
+          <p>創意總監</p>
+          <p>負責游戲概念設計和整體藝術風格把控。曾參與多款獲獎獨立游戲製作。</p>
+        </div>
+        <div class="team-card">
+          <img src="https://HalfPeopleStudio.com/images/team-member3.jpg" alt="王五 - 技術美術" class="team-image" width="200" height="200">
+          <h3>王五</h3>
+          <p>技術美術</p>
+          <p>專注於創新視覺效果和渲染技術的研發。擁有計算機圖形學碩士學位。</p>
+        </div>
+        <div class="team-card">
+          <img src="https://HalfPeopleStudio.com/images/team-member4.jpg" alt="趙六 - AI研究員" class="team-image" width="200" height="200">
+          <h3>趙六</h3>
+          <p>AI研究員</p>
+          <p>致力於將最新的AI技術應用到游戲開發中。曾在頂級AI會議發表論文。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>關於我們</h3>
+          <p>半人工作室致力於創新游戲開發和工具研發，為獨立開發者提供強大支持。我們相信技術與創意的完美結合。</p>
+        </div>
+        <div class="footer-section">
+          <h3>快速鏈接</h3>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲作品</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">開發工具</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">技術博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/careers">加入我們</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>聯繫我們</h3>
+          <p>郵箱：info@halfpeoplestudio.com</p>
+          <p>地址：中國深圳市南山區科技園創新大廈A座1001室</p>
+          <p>電話：+86 755-8888-8888</p>
+        </div>
+        <div class="footer-section">
+          <h3>訂閱新聞</h3>
+          <p>及時獲取我們的最新動態和技術分享</p>
+          <form action="https://HalfPeopleStudio.com/subscribe" method="post">
+            <input type="email" name="email" placeholder="您的郵箱地址" required>
+            <button type="submit" class="cta-button">訂閱</button>
+          </form>
+        </div>
+      </div>
+      <div class="social-icons">
+        <a href="https://twitter.com/HalfPeopleStudio" target="_blank" title="Twitter">🐦</a>
+        <a href="https://facebook.com/HalfPeopleStudio" target="_blank" title="Facebook">📘</a>
+        <a href="https://github.com/HalfPeopleStudio" target="_blank" title="GitHub">🐙</a>
+        <a href="https://www.youtube.com/HalfPeopleStudio" target="_blank" title="YouTube">🎥</a>
+        <a href="https://discord.gg/HalfPeopleStudio" target="_blank" title="Discord">💬</a>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2023 半人工作室。保留所有權利。</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.getElementById('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      const ctaButtons = document.querySelectorAll('.cta-button');
+      ctaButtons.forEach(button => {
+        button.addEventListener('mouseover', function() {
+          this.style.transform = 'translateY(-3px)';
+        });
+        button.addEventListener('mouseout', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+
+      // 添加滾動動畫
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(animateOnScroll, {
+        root: null,
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.project-card, .tool-card, .team-card').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
