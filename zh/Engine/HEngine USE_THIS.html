@@ -1,0 +1,469 @@
+<html><head><base href="https://HalfPeopleStudio.com/engine">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半人游戲引擎 - 革新游戲開發的免費利器</title>
+<style>
+  :root {
+    --primary-color: #0a0a0a;
+    --secondary-color: #1e1e1e;
+    --accent-color: #00ffcc;
+    --text-color: #ffffff;
+    --highlight-color: #ff3366;
+  }
+  
+  body {
+    font-family: 'Noto Sans TC', 'Microsoft YaHei', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .logo:hover {
+    text-shadow: 0 0 10px var(--accent-color);
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #0a0a0a, #1e1e1e);
+    z-index: -1;
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 4em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      text-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
+    }
+    to {
+      text-shadow: 0 0 20px rgba(0, 255, 204, 0.8);
+    }
+  }
+  
+  .hero p {
+    font-size: 1.4em;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease-out 0.5s forwards;
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 15px 40px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: all 0.5s;
+  }
+  
+  .cta-button:hover::before {
+    left: 100%;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--highlight-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(255, 51, 102, 0.3);
+  }
+  
+  .features, .showcase {
+    padding: 100px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 50px;
+    color: var(--accent-color);
+    position: relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: var(--highlight-color);
+    margin: 20px auto 0;
+  }
+  
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+  }
+  
+  .feature-card {
+    background-color: var(--secondary-color);
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .feature-card.animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 255, 204, 0.1);
+  }
+  
+  .feature-icon {
+    font-size: 4em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .feature-card h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: var(--text-color);
+  }
+  
+  .showcase-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .showcase-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  .showcase-item.animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .showcase-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .showcase-item:hover .showcase-image {
+    transform: scale(1.1);
+  }
+  
+  .showcase-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .showcase-item:hover .showcase-overlay {
+    transform: translateY(0);
+  }
+  
+  .showcase-overlay h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+  }
+  
+  footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+  
+  .pulse {
+    animation: pulse 3s infinite;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <h1 class="floating">半人游戲引擎</h1>
+      <p>釋放你的創意潛力，打造下一代游戲體驗</p>
+      <a href="https://HalfPeopleStudio.com/engine/download" class="cta-button pulse">免費下載</a>
+    </div>
+  </section>
+
+  <section id="features" class="features">
+    <div class="container">
+      <h2 class="section-title">引擎特性</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🚀</div>
+          <h3>高性能渲染</h3>
+          <p>采用最新圖形技術，實現流暢的2D和3D渲染，帶來視覺盛宴。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎨</div>
+          <h3>直觀編輯器</h3>
+          <p>用戶友好的可視化界面，拖放操作，實時預覽，讓創作更輕松。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>多平台支持</h3>
+          <p>一次開發，多端發布，覆蓋PC、移動、主機和網頁平台。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧩</div>
+          <h3>靈活擴展</h3>
+          <p>模塊化設計和插件系統，輕松定制和擴展引擎功能。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🤖</div>
+          <h3>AI輔助</h3>
+          <p>內置智能助手，協助腳本編寫、資源優化和游戲設計。</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔧</div>
+          <h3>完整工具鏈</h3>
+          <p>從概念到發布，提供全面的開發工具和資源管理系統。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="showcase">
+    <div class="container">
+      <h2 class="section-title">引擎展示</h2>
+      <div class="showcase-grid">
+        <div class="showcase-item">
+          <img src="https://HalfPeopleStudio.com/images/engine-editor.jpg" alt="引擎編輯器界面" class="showcase-image" width="300" height="250">
+          <div class="showcase-overlay">
+            <h3>強大的編輯器</h3>
+            <p>直觀的界面設計，助你輕松創建游戲世界</p>
+          </div>
+        </div>
+        <div class="showcase-item">
+          <img src="https://HalfPeopleStudio.com/images/engine-3d.jpg" alt="3D渲染效果" class="showcase-image" width="300" height="250">
+          <div class="showcase-overlay">
+            <h3>震撼3D渲染</h3>
+            <p>先進的圖形技術，呈現逼真視覺效果</p>
+          </div>
+        </div>
+        <div class="showcase-item">
+          <img src="https://HalfPeopleStudio.com/images/engine-2d.jpg" alt="2D游戲示例" class="showcase-image" width="300" height="250">
+          <div class="showcase-overlay">
+            <h3>靈活的2D系統</h3>
+            <p>為2D游戲開發提供豐富的工具和功能</p>
+          </div>
+        </div>
+        <div class="showcase-item">
+          <img src="https://HalfPeopleStudio.com/images/engine-vr.jpg" alt="VR內容創作" class="showcase-image" width="300" height="250">
+          <div class="showcase-overlay">
+            <h3>VR/AR開發</h3>
+            <p>輕松創建沉浸式虛擬現實體驗</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+      <nav>
+        <a href="https://HalfPeopleStudio.com/privacy">隱私政策</a> |
+        <a href="https://HalfPeopleStudio.com/terms">使用條款</a> |
+        <a href="https://HalfPeopleStudio.com/contact">聯繫我們</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        } else {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        }
+      });
+
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(animateOnScroll, {
+        root: null,
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.feature-card, .showcase-item').forEach(el => {
+        observer.observe(el);
+      });
+      
+      // 添加鼠標跟隨效果
+      const hero = document.querySelector('.hero');
+      hero.addEventListener('mousemove', (e) => {
+        const { clientX, clientY } = e;
+        const { left, top, width, height } = hero.getBoundingClientRect();
+        const x = (clientX - left) / width - 0.5;
+        const y = (clientY - top) / height - 0.5;
+        
+        hero.style.setProperty('--mouse-x', x);
+        hero.style.setProperty('--mouse-y', y);
+      });
+    });
+  </script>
+</body>
+</html>

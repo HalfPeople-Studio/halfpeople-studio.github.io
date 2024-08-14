@@ -1,0 +1,278 @@
+<html><head><base href="https://HalfPeopleStudio.com/forum/new-topic">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>發布新主題 - 半人工作室討論區</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #2c2c2c;
+    --accent-color: #4a90e2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+    --input-bg: #3a3a3a;
+    --input-border: #555;
+  }
+
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+  }
+
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+
+  nav ul li {
+    margin-left: 20px;
+  }
+
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+
+  main {
+    padding-top: 80px;
+  }
+
+  h1 {
+    color: var(--accent-color);
+    margin-bottom: 30px;
+  }
+
+  form {
+    background-color: var(--secondary-color);
+    padding: 30px;
+    border-radius: 10px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  select,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 5px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 16px;
+  }
+
+  textarea {
+    height: 200px;
+    resize: vertical;
+  }
+
+  .button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+
+  .button:hover {
+    background-color: var(--highlight-color);
+  }
+
+  .markdown-tips {
+    margin-top: 20px;
+    font-size: 0.9em;
+    color: #999;
+  }
+
+  footer {
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 15px;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h1>發布新主題</h1>
+      <form id="new-topic-form">
+        <div class="form-group">
+          <label for="title">標題</label>
+          <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+          <label for="category">分類</label>
+          <select id="category" name="category" required>
+            <option value="">選擇分類</option>
+            <option value="game-dev">游戲開發</option>
+            <option value="half-engine">HalfEngine討論</option>
+            <option value="programming">編程語言</option>
+            <option value="3d-modeling">3D建模與動畫</option>
+            <option value="audio">音效與配樂</option>
+            <option value="showcase">項目展示</option>
+            <option value="industry-news">行業新聞</option>
+            <option value="career">職業發展</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="content">內容</label>
+          <textarea id="content" name="content" required></textarea>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="button">發布主題</button>
+        </div>
+      </form>
+      <div class="markdown-tips">
+        <h3>Markdown 格式提示：</h3>
+        <ul>
+          <li>使用 # 來創建標題，例如：# 一級標題</li>
+          <li>使用 ** 來加粗文字，例如：**粗體**</li>
+          <li>使用 * 來斜體文字，例如：*斜體*</li>
+          <li>使用 ` 來插入代碼，例如：`代碼`</li>
+          <li>使用 - 或 * 來創建無序列表</li>
+          <li>使用 1. 2. 3. 來創建有序列表</li>
+          <li>使用 [鏈接文字](URL) 來插入鏈接</li>
+          <li>使用 ![替代文字](圖片URL) 來插入圖片</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        } else {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        }
+      });
+
+      // 表單提交處理
+      const form = document.getElementById('new-topic-form');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const title = document.getElementById('title').value;
+        const category = document.getElementById('category').value;
+        const content = document.getElementById('content').value;
+
+        // 在這裡可以添加表單驗證邏輯
+
+        // 模擬表單提交
+        console.log('提交的主題：', { title, category, content });
+        alert('主題已成功發布！');
+        
+        // 重置表單
+        form.reset();
+        
+        // 實際應用中，這裡應該使用AJAX發送數據到服務器
+        // 並根據服務器響應進行相應的處理
+      });
+
+      // 實時預覽功能（可選）
+      const contentTextarea = document.getElementById('content');
+      const previewDiv = document.createElement('div');
+      previewDiv.className = 'content-preview';
+      previewDiv.style.marginTop = '20px';
+      previewDiv.style.padding = '10px';
+      previewDiv.style.backgroundColor = 'var(--input-bg)';
+      previewDiv.style.border = '1px solid var(--input-border)';
+      previewDiv.style.borderRadius = '5px';
+      form.insertBefore(previewDiv, form.lastElementChild);
+
+      contentTextarea.addEventListener('input', function() {
+        // 這裡可以添加Markdown解析邏輯
+        previewDiv.textContent = this.value;
+      });
+    });
+  </script>
+</body>
+</html>

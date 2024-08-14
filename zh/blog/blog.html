@@ -1,0 +1,381 @@
+<html><head><base href="http://halfpeoplestudio.lol/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半人工作室 - 開放技術博客平台</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #f185ff;
+    --text-color: #e0e0e0;
+    --highlight-color: #f176ff;
+    --gradient-1: linear-gradient(135deg, #390033 0%, #000000 100%);
+    --gradient-2: linear-gradient(135deg, #ff5ff2 0%, #d795ff 100%);
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-image:url('img/wallpepr2.jpg') ;
+    background-color: rgba(0, 0, 0, 0.373);
+    background-blend-mode:color ;
+    background-size:cover;
+    background-attachment:fixed ;
+    transition: backdrop-filter 1s ease;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgb(0, 0, 0);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .blog-hero {
+    padding: 100px 0 50px;
+    text-align: center;
+  }
+  
+  .blog-hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+  }
+  
+  .blog-hero p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto 20px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    padding: 12px 24px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--accent-color);
+  }
+  
+  .blog-content {
+    display: flex;
+    margin-top: 50px;
+  }
+  
+  .blog-main {
+    flex: 2;
+    margin-right: 40px;
+  }
+  
+  .blog-sidebar {
+    flex: 1;
+  }
+  
+  .blog-post {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 30px;
+    margin-bottom: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .blog-post:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .blog-post h2 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+  }
+  
+  .blog-post-meta {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    margin-bottom: 15px;
+  }
+  
+  .blog-post-excerpt {
+    margin-bottom: 20px;
+  }
+  
+  .read-more {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .read-more:hover {
+    background-color: var(--highlight-color);
+  }
+  
+  .sidebar-section {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .sidebar-section h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+  }
+  
+  .tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .tag {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin: 0 5px 5px 0;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tag:hover {
+    background-color: var(--highlight-color);
+  }
+  
+  .popular-posts {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .popular-posts li {
+    margin-bottom: 15px;
+  }
+  
+  .popular-posts a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .popular-posts a:hover {
+    color: var(--accent-color);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .blog-content {
+      flex-direction: column;
+    }
+    
+    .blog-main {
+      margin-right: 0;
+      margin-bottom: 40px;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html"><img src="img/HPTG3.png" width="250" height="85"></a>
+        <nav>
+          <ul>
+            <li><a href="index.html">首頁</a></li>
+            <li><a href="zh/game/games.html">游戲</a></li>
+            <li><a href="zh/Engine/HalfEngine.html">游戲引擎</a></li>
+            <li><a href="zh/software/software.html">軟件</a></li>
+            <li><a href="zh/lib/LIBSAndAPP.html">工具庫</a></li>
+            <li><a href="zh/blog/blog.html">博客</a></li>
+            <li><a href="zh/forums/forums.html">討論區</a></li>
+            <li><a href="zh/about/about.html">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="blog-hero">
+    <div class="container">
+      <h1>半人工作室開放技術博客平台</h1>
+      <p>分享你的技術洞察，探索無限可能。從游戲開發到人工智能，從數據科學到網絡安全，這裡是創新思想的匯聚地。</p>
+      <a href="https://HalfPeopleStudio.com/blog/submit" class="cta-button">提交你的博客</a>
+    </div>
+  </section>
+
+  <div class="container">
+    <div class="blog-content">
+      <main class="blog-main">
+
+        <article class="blog-post">
+          <h2>深度學習在自然語言處理中的創新應用</h2>
+          <div class="blog-post-meta">
+            作者：mg的嘟嘟 | 發布日期：2023年6月15日 | 分類：人工智能, NLP
+          </div>
+          <div class="blog-post-excerpt">
+            <p>自然語言處理（NLP）技術在近年來取得了巨大的進步。本文將介紹最新的深度學習模型如何改變我們處理和理解人類語言的方式，包括語言翻譯、情感分析、文本生成等領域的突破性進展。</p>
+          </div>
+          <a href="https://developer.aliyun.com/article/1563947" class="read-more">閱讀全文</a>
+        </article>
+
+        <article class="blog-post">
+          <h2>區塊鏈技術在游戲產業中的應用前景</h2>
+          <div class="blog-post-meta">
+            作者：admin | 發布日期：2023年6月10日 | 分類：區塊鏈, 游戲開發
+          </div>
+          <div class="blog-post-excerpt">
+            <p>區塊鏈技術正在為游戲產業帶來革命性的變化。從數字資產所有權到去中心化游戲平台，本文將探討區塊鏈如何改變游戲的開發、分發和玩家體驗，以及這項技術在未來游戲生態系統中的潛力。</p>
+          </div>
+          <a href="https://www.swtv.com.cn/blockchain/4121.html" class="read-more">閱讀全文</a>
+        </article>
+      </main>
+
+      <aside class="blog-sidebar">
+        <div class="sidebar-section">
+          <h3>熱門標籤</h3>
+          <div class="tag-cloud">
+            <a href="https://HalfPeopleStudio.com/blog/tags/ai" class="tag">人工智能</a>
+            <a href="https://HalfPeopleStudio.com/blog/tags/blockchain" class="tag">區塊鏈</a>
+            <a href="https://HalfPeopleStudio.com/blog/tags/cybersecurity" class="tag">網絡安全</a>
+            <a href="https://HalfPeopleStudio.com/blog/tags/data-science" class="tag">數據科學</a>
+            <a href="https://HalfPeopleStudio.com/blog/tags/game-dev" class="tag">游戲開發</a>
+            <a href="https://HalfPeopleStudio.com/blog/tags/machine-learning" class="tag">機器學習</a>
+            <a href="https://HalfPeopleStudio.com/blog/tags/quantum-computing" class="tag">量子計算</a>
+            <a href="https://HalfPeopleStudio.com/blog/tags/web3" class="tag">Web3</a>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>熱門文章</h3>
+          <ul class="popular-posts">
+            <li><a href="https://HalfPeopleStudio.com/blog/future-of-ai">人工智能的未來：機遇與挑戰</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog/cybersecurity-best-practices">網絡安全最佳實踐：保護你的數字資產</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog/big-data-analytics">大數據分析：洞察商業價值的關鍵</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog/cloud-native-development">雲原生開發：構建可擴展的現代應用</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog/iot-revolution">物聯網革命：連接世界的新方式</a></li>
+          </ul>
+        </div>
+
+        <div class="sidebar-section">
+          <h3>成為貢獻者</h3>
+          <p>分享你的專業知識，成為我們的技術博客貢獻者</p>
+          <a href="https://HalfPeopleStudio.com/blog/become-contributor" class="cta-button" style="display: block; text-align: center; margin-top: 10px;">了解詳情</a>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          document.body.style.backdropFilter = "blur(35px)";
+        } else {
+          document.body.style.backdropFilter = "blur(0px)";
+        }
+      });
+      
+      const readMoreButtons = document.querySelectorAll('.read-more, .cta-button');
+      readMoreButtons.forEach(button => {
+        button.addEventListener('mouseover', function() {
+          this.style.backgroundColor = 'var(--highlight-color)';
+        });
+        button.addEventListener('mouseout', function() {
+          this.style.backgroundColor = 'var(--accent-color)';
+        });
+      });
+
+      // 添加滾動動畫
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(animateOnScroll, {
+        root: null,
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.blog-post, .sidebar-section').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
