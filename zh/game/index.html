@@ -1,0 +1,631 @@
+<html><head><base href="http://halfpeoplestudio.lol/">
+  <link rel="icon" type="image/x-icon" href="img/HP_LOGO2.ico">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半個人科技 - 游戲作品展示</title>
+<style>
+  :root {
+    --primary-color: #575757;
+    --secondary-color: #ffb764;
+    --accent-color: #ffd2ad;
+    --text-color: #ffffff;
+    --highlight-color: #ff9900;
+    --gradient-1: linear-gradient(135deg, #3d3d3d 0%, #212121 100%);
+    --gradient-2: linear-gradient(135deg, #ba986d 0%, #6c3100 100%);
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-image:url('img/wallpaper1.jpg');
+    background-attachment:fixed ;
+    transition: backdrop-filter 1s ease;
+  }
+  
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 30px;
+  }
+  
+  header {
+    background-color: rgb(0, 0, 0);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.8em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+  
+  .logo:hover {
+    transform: scale(1.05);
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 30px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    font-size: 1.1em;
+    display: inline-block;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+  }
+  
+  .hero {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background-image: url('https://HalfPeopleStudio.com/images/games-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 4.5em;
+    margin-bottom: 30px;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    animation: heroTitleAnimation 1.5s ease-out;
+  }
+  
+  @keyframes heroTitleAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .hero p {
+    font-size: 1.4em;
+    margin-bottom: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: heroTextAnimation 1.5s ease-out 0.5s both;
+  }
+  
+  @keyframes heroTextAnimation {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 40px;
+    padding: 80px 0;
+  }
+  
+  .game-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .game-card:hover {
+    transform: translateY(-15px) rotateY(10deg);
+    box-shadow: 0 15px 30px rgba(130, 97, 0, 0.3);
+  }
+  
+  .game-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(from 0deg at 50% 50%, rgba(255,255,255,0) 0deg, rgba(255,255,255,0.03) 60deg, rgba(255,255,255,0) 120deg);
+    animation: rotateShine 8s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .game-card:hover::before {
+    opacity: 1;
+  }
+  
+  @keyframes rotateShine {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .game-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .game-card:hover .game-image {
+    transform: scale(1.1);
+  }
+  
+  .game-info {
+    padding: 30px;
+  }
+  
+  .game-info h3 {
+    font-size: 2em;
+    margin-bottom: 15px;
+    color: var(--accent-color);
+    transition: color 0.3s ease;
+  }
+  
+  .game-card:hover .game-info h3 {
+    color: var(--highlight-color);
+  }
+  
+  .game-info p {
+    margin-bottom: 20px;
+    font-size: 1.1em;
+  }
+  
+  .game-tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  
+  .game-tag {
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    padding: 8px 15px;
+    border-radius: 25px;
+    font-size: 0.9em;
+    margin-right: 12px;
+    margin-bottom: 12px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .game-tag:hover {
+    transform: translateY(-5px) rotate(5deg);
+    background-color: var(--accent-color);
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 12px 25px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .cta-button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: all 0.5s ease;
+  }
+  
+  .cta-button:hover::before {
+    left: 100%;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+    font-size: 1.1em;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .animate {
+    animation: fadeInUp 0.8s ease-out;
+  }
+  
+  .section-title {
+    font-size: 3em;
+    text-align: center;
+    margin-bottom: 50px;
+    color: var(--accent-color);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--highlight-color);
+    transition: all 0.5s ease;
+  }
+  
+  .section-title:hover::after {
+    width: 100%;
+    left: 0;
+  }
+  
+  .featured-game {
+    display: flex;
+    align-items: center;
+    margin-bottom: 80px;
+    background: var(--gradient-1);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease;
+  }
+  
+  .featured-game:hover {
+    transform: scale(1.02);
+  }
+  
+  .featured-game-image {
+    flex: 1;
+    max-width: 50%;
+    overflow: hidden;
+  }
+  
+  .featured-game-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .featured-game:hover .featured-game-image img {
+    transform: scale(1.1);
+  }
+  
+  .featured-game-info {
+    flex: 1;
+    padding: 50px;
+  }
+  
+  .featured-game-info h2 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+  
+  .featured-game-info p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    color: var(--text-color);
+  }
+  
+  .testimonial-section {
+    background: var(--gradient-2);
+    padding: 80px 0;
+    margin-top: 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .testimonial-section::before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    left: -50px;
+    width: calc(100% + 100px);
+    height: calc(100% + 100px);
+    background: url('https://HalfPeopleStudio.com/images/testimonial-pattern.svg');
+    opacity: 0.1;
+    animation: backgroundScroll 20s linear infinite;
+  }
+  
+  @keyframes backgroundScroll {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(-100px, -100px);
+    }
+  }
+  
+  .testimonial-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  
+  .testimonial-text {
+    font-size: 1.8em;
+    font-style: italic;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    position: relative;
+  }
+  
+  .testimonial-text::before,
+  .testimonial-text::after {
+    content: '"';
+    font-size: 4em;
+    color: rgba(0,0,0,0.1);
+    position: absolute;
+    top: -20px;
+  }
+  
+  .testimonial-text::before {
+    left: -40px;
+  }
+  
+  .testimonial-text::after {
+    right: -40px;
+  }
+  
+  .testimonial-author {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: var(--primary-color);
+  }
+  
+  /* 新增的動畫效果 */
+  @keyframes float {
+    0% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+    100% {
+      transform: translateY(0px);
+    }
+  }
+  
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  @keyframes pulse {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .pulsing {
+    animation: pulse 3s ease-in-out infinite;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="zh/index.html"><img src="img/HPTG3.png" width="250" height="85"></a>
+        <nav>
+          <ul>
+            <li><a href="zh/index.html">首頁</a></li>
+            <li><a href="zh/game/index.html">游戲</a></li>
+            <li><a href="zh/Engine/index.html">游戲引擎</a></li>
+            <li><a href="zh/software/index.html">軟件</a></li>
+            <li><a href="zh/lib/index.html">工具庫</a></li>
+            <li><a href="zh/blog/index.html">博客</a></li>
+            <li><a href="zh/about/index.html">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="floating">探索半個人科技的游戲世界</h1>
+      <p>每一款游戲都是我們激情與創意的結晶，帶你進入不同的奇幻世界，體驗獨特的游戲樂趣</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="featured-game pulsing">
+      <div class="featured-game-image">
+        <img src="img/FRcarnival/FRcarnival_long.png" alt="竞速嘉年华" width="700" height="400">
+      </div>
+      <div class="featured-game-info">
+        <h2>竞速嘉年华</h2>
+        <p>我們打造移動設備的上的開放世界競速游戲</p>
+        <a href="zh/game/FRcarnival/index.html" class="cta-button">立即探索</a>
+      </div>
+    </section>
+
+    <h2 class="section-title">我們的游戲作品</h2>
+    <div class="games-grid">
+      <div class="game-card">
+        <img src="img/FRcarnival/FRcarnival_long.png" alt="竞速嘉年华截圖" class="game-image" width="350" height="250">
+        <div class="game-info">
+          <h3>竞速嘉年华</h3>
+          <p>在開放的大地圖上，隨心競速，尋找技術的真諦。</p>
+          <div class="game-tags">
+            <span class="game-tag">賽車</span>
+            <span class="game-tag">開放世界</span>
+            <span class="game-tag">模擬</span>
+          </div>
+          <a href="zh/game/FRcarnival/index.html" class="cta-button">了解更多</a>
+        </div>
+      </div>
+
+      <div class="game-card">
+        <img src="img/Universe/UniverseX.png" alt="竞速嘉年华截圖" class="game-image" width="350" height="250">
+        <div class="game-info">
+          <h3>X宇宙</h3>
+          <p>在木星上與木衛2之間的木衛2軌道的移民太空船上的冒險。</p>
+          <div class="game-tags">
+            <span class="game-tag">宇宙</span>
+            <span class="game-tag">開放世界</span>
+            <span class="game-tag">FPS</span>
+          </div>
+          <a href="zh/game/UniverseX/index.html" class="cta-button">了解更多</a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Half People Technology。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const gameCards = document.querySelectorAll('.game-card');
+      const header = document.querySelector('header');
+      const heroContent = document.querySelector('.hero-content');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          document.body.style.backdropFilter = "blur(35px)";
+        } else {
+          document.body.style.backdropFilter = "blur(0px)";
+        }
+      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1
+      });
+      
+      gameCards.forEach(card => {
+        observer.observe(card);
+      });
+
+
+
+      // 游戲卡片懸停效果
+      gameCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+
+          card.style.setProperty('--mouse-x', `${x}px`);
+          card.style.setProperty('--mouse-y', `${y}px`);
+        });
+      });
+
+      // 添加打字機效果
+      function typeWriter(element, text, speed = 50) {
+        let i = 0;
+        element.innerHTML = '';
+        function type() {
+          if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+          }
+        }
+        type();
+      }
+
+      const heroTitle = heroContent.querySelector('h1');
+      const heroText = heroContent.querySelector('p');
+      
+      typeWriter(heroTitle, '探索半個人科技的游戲世界', 100);
+      setTimeout(() => {
+        typeWriter(heroText, '每一款游戲都是我們激情與創意的結晶，帶你進入不同的奇幻世界，體驗獨特的游戲樂趣', 30);
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

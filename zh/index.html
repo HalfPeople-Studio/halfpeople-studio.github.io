@@ -1,0 +1,629 @@
+<html><head><base href="http://halfpeoplestudio.lol/">
+  <link rel="icon" type="image/x-icon" href="img/HP_LOGO2.ico">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半個人科技 - 獨立游戲開發與創新工具</title>
+<style>
+  :root {
+    --primary-color: #3d3d3d;
+    --secondary-color: #ffb764;
+    --accent-color: #ffd2ad;
+    --text-color: #ffffff;
+    --highlight-color: #ff9900;
+    --gradient-1: linear-gradient(135deg, #747474 0%, #4b4b4b 100%);
+    --gradient-2: linear-gradient(135deg, #ba986d 0%, #6c3100 100%);
+  }
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-image:url('img/wallpaper1.jpg');
+    background-attachment:fixed ;
+    transition: backdrop-filter 1s ease;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgb(0, 0, 0);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://HalfPeopleStudio.com/images/indie-game-dev-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.3);
+    z-index: -1;
+    
+  }
+  
+  .hero-content {
+    max-width: 800px;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(226, 160, 74, 0.3);
+
+  }
+  
+  .projects, .tools, .team {
+    padding: 100px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: var(--accent-color);
+    position: relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background-color: var(--highlight-color);
+    margin: 10px auto;
+  }
+  
+  .project-grid, .tool-grid, .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+
+  .project-card, .tool-card, .team-card {
+    background-color: rgba(105, 95, 74, 0.277);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .project-card::before, .tool-card::before, .team-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--gradient-1);
+    opacity: 0.1;
+    transform: rotate(30deg);
+    z-index: -1;
+    transition: all 0.5s ease;
+  }
+  
+  .project-card:hover::before, .tool-card:hover::before, .team-card:hover::before {
+    transform: rotate(0deg);
+    opacity: 0.2;
+  }
+  
+  .project-card:hover, .tool-card:hover, .team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(255, 179, 0, 0.1);
+  }
+  
+  .tool-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 4px 6px rgba(255, 255, 255, 0.1));
+  }
+  
+  .project-card h3, .tool-card h3, .team-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+  }
+  
+  .project-image, .team-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+  
+  .project-card:hover .project-image, .team-card:hover .team-image {
+    transform: scale(1.05);
+  }
+  
+  .engine-section {
+    background: var(--gradient-2);
+    padding: 100px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .engine-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://HalfPeopleStudio.com/images/circuit-pattern.png') repeat;
+    opacity: 0.1;
+    z-index: 0;
+  }
+  
+  .engine-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .engine-info {
+    flex: 1;
+    padding-right: 50px;
+  }
+  
+  .engine-image {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .engine-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .engine-image img:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 50px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('https://HalfPeopleStudio.com/images/footer-pattern.png') repeat;
+    opacity: 0.05;
+    z-index: 0;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .footer-section {
+    flex: 1;
+    margin-bottom: 30px;
+    min-width: 200px;
+  }
+  
+  .footer-section h3 {
+    color: var(--accent-color);
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .footer-section h3::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 2px;
+    background-color: var(--highlight-color);
+  }
+  
+  .footer-section ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-section ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-section ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .social-icons a {
+    color: var(--text-color);
+    font-size: 1.5em;
+    margin: 0 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: var(--accent-color);
+    transform: translateY(-3px);
+  }
+  
+  .copyright {
+    margin-top: 30px;
+    font-size: 0.9em;
+    opacity: 0.7;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  
+  .floating {
+    animation: float 4s ease-in-out infinite;
+  }
+</style>
+</head>
+<!-- background="img/wallpaper1.jpg" -->
+<body >
+  <header id="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="zh/index.html"><img src="img/HPTG3.png" width="250" height="85"></a>
+        <nav>
+          <ul>
+            <li><a href="zh/index.html">首頁</a></li>
+            <li><a href="zh/game/index.html">游戲</a></li>
+            <li><a href="zh/Engine/index.html">游戲引擎</a></li>
+            <li><a href="zh/software/index.html">軟件</a></li>
+            <li><a href="zh/lib/index.html">工具庫</a></li>
+            <li><a href="zh/blog/index.html">博客</a></li>
+            <li><a href="zh/about/index.html">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+<!-- 註解_第一面 -->
+  <section class="hero">
+    <div class="hero-background"></div>
+    <div class="hero-content">
+      <h1>創造無限可能的軟件宇宙</h1>
+      <p>半個人科技致力於打造創新、獨特的游戲體驗和強大的開發工具</p>
+      <a href="zh/game/index.html" class="cta-button">探索我們的游戲</a>
+    </div>
+  </section>
+<!-- 註解_游戲引擎 --> 
+  <section class="engine-section">
+    <div class="container">
+      <h2 class="section-title">半個人游戲引擎</h2>
+      <div class="engine-content">
+        <div class="engine-info">
+          <h3>為創意而生的強大工具</h3>
+          <p>我們的自主研發游戲引擎為獨立開發者提供了高效、靈活的解決方案。無論是2D還是3D游戲，半個人游戲引擎都能滿足你的創意需求。</p>
+          <ul>
+            <li>高性能渲染系統</li>
+            <li>直觀的可視化編輯器</li>
+            <li>跨平台支持</li>
+            <li>豐富的資源庫和插件生態</li>
+            <li>實時協作功能</li>
+            <li>內置AI輔助工具</li>
+          </ul>
+          <a href="zh/Engine/index.html" class="cta-button">深入了解</a>
+        </div>
+        <div class="engine-image">
+          <img src="img/HEM.jpg" alt="半個人科技游戲引擎界面"  class="floating">
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- 註解_游戲作品 --> 
+  <section class="projects">
+    <div class="container">
+      <h2 class="section-title">我們的游戲作品</h2>
+      <div class="project-grid">
+        <!-- 分隔 -->
+        <div class="project-card">
+          <img src="img/FRcarnival/FRcarnival_long.png" alt="竞速嘉年华" class="project-image" width="300" height="200">
+          <h3>竞速嘉年华</h3>
+          <p>打造移動設備的上的開放世界競速游戲</p>
+          <a href="zh/game/FRcarnival/index.html" class="cta-button">了解更多</a>
+        </div>
+        <!-- 分隔 -->
+      </div>
+    </div>
+  </section>
+  <!-- 註解_開發工具與庫 --> 
+  <section class="tools">
+    <div class="container">
+      <h2 class="section-title">軟件</h2>
+      <div class="tool-grid">
+        <!-- 分隔 -->
+        <div class="tool-card">
+          <img src="img/HP_LOGO2.png" alt="HalfMath圖標" class="tool-icon" width="80" height="80">
+          <h3>HalfEngine</h3>
+          <p>強大而靈活的游戲引擎，為您的創意提供無限可能</p>
+          <a href="zh/Engine/index.html" class="cta-button">了解更多</a>
+        </div>
+        <!-- 分隔 -->
+        <div class="tool-card">
+          <img src="img/HP_LOGO2.png" alt="HalfAudio圖標" class="tool-icon" width="80" height="80">
+          <h3>HImGui編輯器</h3>
+          <p>ImGuiEditor，目的是讓使用者編輯ImGui更清晰、更容易。從而加速發展</p>
+          <a href="https://github.com/Half-People/HImGuiEditor" class="cta-button">了解更多</a>
+        </div>
+
+        <!-- 分隔 -->
+        <div class="tool-card">
+          <img src="img/HP_LOGO2.png" alt="HalfAI圖標" class="tool-icon" width="80" height="80">
+          <h3>AI日語教學軟件</h3>
+          <p>結合了人工智能的日語學習工具，能成爲你最棒的日語導師（目前僅支持中文用戶學習）</p>
+          <a href="zh/software/app/AIJp/index.html" class="cta-button">了解更多</a>
+        </div>
+      <div style="text-align: center; margin-top: 0px; margin-left: 200;">
+        <a href="zh/software/index.html" class="cta-button">探索更多工具</a>
+      </div>
+    </div>
+  </section>
+<!-- 註解_開發工具與庫 --> 
+  <section class="tools">
+    <div class="container">
+      <h2 class="section-title">開發工具與庫</h2>
+      <div class="tool-grid">
+        <!-- 分隔 -->
+        <div class="tool-card">
+          <img src="img/HImGuiAnimation.png" alt="HalfMath圖標" class="tool-icon" width="80" height="80">
+          <h3>HImGui動畫驅動APi</h3>
+          <p>一個簡單的 ImGui 動畫驅動程式。您很快就可以使用不到十行程式碼來運行動畫，並且不需要任何依賴項</p>
+          <a href="https://github.com/Half-People/HImGuiAnimation" class="cta-button">了解更多</a>
+        </div>
+        <!-- 分隔 -->
+        <div class="tool-card">
+          <img src="img/HP_LOGO2.png" alt="HalfRender圖標" class="tool-icon" width="80" height="80">
+          <h3>HImGui圖像管理器</h3>
+          <p>可以用ImGui實現圖像管理器的API庫        </p>
+          <a href="https://github.com/Half-People/HImGuiImageManager" class="cta-button">了解更多</a>
+        </div>
+        <!-- 分隔 -->
+        <div class="tool-card">
+          <img src="img/HP_LOGO2.png" alt="HalfAudio圖標" class="tool-icon" width="80" height="80">
+          <h3>HImGui編輯器</h3>
+          <p>ImGuiEditor，目的是讓使用者編輯ImGui更清晰、更容易。從而加速發展</p>
+          <a href="https://github.com/Half-People/HImGuiEditor" class="cta-button">了解更多</a>
+        </div>
+        <!-- 分隔 -->
+        <div class="tool-card">
+          <img src="img/harrow.png" alt="HalfPhysics圖標" class="tool-icon" width="80" height="80">
+          <h3>ImGui-2D-箭頭</h3>
+          <p>可以用ImGui實現2D-箭頭的API庫</p>
+          <a href="https://github.com/Half-People/ImGui-2D-HArrow" class="cta-button">了解更多</a>
+        </div>
+        <!-- 分隔 -->
+        <div class="tool-card">
+          <img src="img/earp.png" alt="HalfAI圖標" class="tool-icon" width="80" height="80">
+          <h3>簡易音訊錄製播放 API</h3>
+          <p>輕鬆錄音播放僅需十行程式碼即可實現這些功能（可網路傳輸）</p>
+          <a href="https://github.com/Half-People/Easy-Audio-Recording-Playback-API" class="cta-button">了解更多</a>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 40px;">
+        <a href="zh/lib/index.html" class="cta-button">探索更多工具</a>
+      </div>
+    </div>
+  </section>
+<!-- 註解_創新團隊 -->
+  <section class="team">
+    <div class="container">
+      <h2 class="section-title">創新團隊</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <a href="zh/about/People1/index.html"><img src="https://avatars.githubusercontent.com/u/56476339?v=4" alt="半個人 - 首席開發者" class="team-image" width="200" height="200"></a>
+          <h3>半個人</h3>
+          <p>首席開發者</p>
+          <p>專注於游戲引擎核心架構設計和性能優化,渲染技術的研發。</p>
+        </div>
+        <!-- 分隔 -->
+        <div class="team-card">
+          <a href="zh/about/People2/index.html"><img src="https://avatars.githubusercontent.com/u/92320290?v=4" alt="奶爺 - 技術美術" class="team-image" width="200" height="200"></a>
+          <h3>奶爺</h3>
+          <p>技術美術</p>
+          <p>負責游戲概念設計和整體藝術風格把控,專注於創新視覺效果/p>
+        </div>
+      </div>
+    </div>
+  </section>
+<!-- 註解_關於我們 -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h3>關於我們</h3>
+          <p>半個人科技致力於創新游戲開發和工具研發，為獨立開發者提供強大支持。我們相信技術與創意的完美結合。</p>
+        </div>
+        <div class="footer-section">
+          <h3>快速鏈接</h3>
+          <ul>
+            <li><a href="zh/game/index.html">游戲作品</a></li>
+            <li><a href="zh/Engine/index.html">游戲引擎</a></li>
+            <li><a href="zh/lib/index.html">開發工具</a></li>
+            <li><a href="zh/blog/index.html">技術博客</a></li>
+            <!--<li><a href="login/index.html">加入我們</a></li> -->
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>聯繫我們</h3>
+          <p>郵箱：halfpeople62336180@gmail.com</p>
+          <p>地區：香港</p>
+
+        </div>
+        <div class="footer-section">
+          <h3>訂閱新聞</h3>
+          <p>及時獲取我們的最新動態和技術分享</p>
+          <form action="https://HalfPeopleStudio.com/subscribe" method="post">
+            <input type="email" name="email" placeholder="您的郵箱地址" required>
+            <button type="submit" class="cta-button">訂閱</button>
+          </form>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>&copy; 2023 Half People Technology。保留所有權利。</p>
+      </div>
+    </div>
+  </footer>
+  <button onclick="changeBackdropFilter()">Change Backdrop Filter</button>
+  <!-- JAVA_Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+  
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 400) {
+          document.body.style.backdropFilter = "blur(35px)";
+        } else {
+          document.body.style.backdropFilter = "blur(0px)";
+        }
+      });
+      
+      const ctaButtons = document.querySelectorAll('.cta-button');
+      ctaButtons.forEach(button => {
+        button.addEventListener('mouseover', function() {
+          this.style.transform = 'translateY(-3px)';
+        });
+        button.addEventListener('mouseout', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+
+      // 添加滾動動畫
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(animateOnScroll, {
+        root: null,
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.project-card, .tool-card, .team-card').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>
