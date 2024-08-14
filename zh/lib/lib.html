@@ -1,0 +1,370 @@
+<html><head><base href="https://HalfPeopleStudio.com/tools/halfaudio">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半人工作室 - HalfAudio</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #4a90e2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-image: url('https://HalfPeopleStudio.com/images/halfaudio-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .section {
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--accent-color);
+  }
+  
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .feature-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(74, 144, 226, 0.1);
+  }
+  
+  .feature-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .feature-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+  }
+  
+  .code-example {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 40px;
+    overflow-x: auto;
+  }
+  
+  .code-example pre {
+    margin: 0;
+    white-space: pre-wrap;
+  }
+  
+  .cta-section {
+    text-align: center;
+    padding: 80px 0;
+    background-image: var(--gradient-1);
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 15px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-size: 1.2em;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  .animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+  <header id="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+            <li><a href="https://HalfPeopleStudio.com/about">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>HalfAudio</h1>
+      <p>強大的音頻處理庫，為游戲提供豐富的聲音體驗</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="section">
+      <h2 class="section-title">主要特性</h2>
+      <div class="features">
+        <div class="feature-card">
+          <div class="feature-icon">🎵</div>
+          <h3>3D音頻</h3>
+          <p>支持空間音頻技術，為游戲世界帶來逼真的聲音環境</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎚️</div>
+          <h3>動態混音</h3>
+          <p>實時調整音頻參數，創造動態且沉浸式的聲音體驗</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🎛️</div>
+          <h3>音頻特效</h3>
+          <p>豐富的音頻處理效果，包括混響、均衡器、壓縮器等</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔊</div>
+          <h3>多格式支持</h3>
+          <p>支持多種音頻格式，包括WAV、OGG、MP3等</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>高性能</h3>
+          <p>優化的音頻處理算法，確保低延遲和高效率</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔌</div>
+          <h3>跨平台</h3>
+          <p>支持多種操作系統和設備，實現無縫集成</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2 class="section-title">代碼示例</h2>
+      <div class="code-example">
+        <pre><code class="language-cpp">
+#include &lt;HalfAudio/HalfAudio.h&gt;
+
+// 初始化音頻系統
+HalfAudio::AudioSystem audioSystem;
+audioSystem.initialize();
+
+// 加載音頻文件
+HalfAudio::SoundPtr backgroundMusic = audioSystem.loadSound("background.ogg");
+HalfAudio::SoundPtr explosionSound = audioSystem.loadSound("explosion.wav");
+
+// 播放背景音樂（循環播放）
+HalfAudio::ChannelPtr musicChannel = audioSystem.playSound(backgroundMusic, true);
+
+// 設置3D音頻源
+HalfAudio::AudioSource explosionSource;
+explosionSource.setPosition(10.0f, 0.0f, 5.0f);
+
+// 播放3D音效
+audioSystem.playSound3D(explosionSound, explosionSource);
+
+// 應用音頻特效
+HalfAudio::Effect reverbEffect = HalfAudio::createReverbEffect();
+reverbEffect.setDecayTime(1.5f);
+musicChannel->addEffect(reverbEffect);
+
+// 動態調整音量
+musicChannel->setVolume(0.8f);
+
+// 清理資源
+audioSystem.shutdown();
+        </code></pre>
+      </div>
+    </section>
+  </main>
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>準備好提升您的游戲音頻體驗了嗎？</h2>
+      <p>立即下載HalfAudio，為您的游戲帶來震撼的聲音效果！</p>
+      <a href="https://HalfPeopleStudio.com/download/halfaudio" class="cta-button">免費下載</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.getElementById('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(animateOnScroll, {
+        root: null,
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.feature-card, .code-example').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

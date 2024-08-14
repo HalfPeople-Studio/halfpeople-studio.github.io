@@ -1,0 +1,414 @@
+<html><head><base href="https://HalfPeopleStudio.com/tools/halfui">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HalfUI - 輕量級游戲UI系統 | 半人工作室</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #4a90e2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-image: url('https://HalfPeopleStudio.com/images/halfui-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+  }
+  
+  .section {
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    color: var(--accent-color);
+  }
+  
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  
+  .feature-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(74, 144, 226, 0.1);
+  }
+  
+  .feature-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .feature-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+  }
+  
+  .demo-section {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 80px 0;
+  }
+  
+  .demo-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .demo-text {
+    flex: 1;
+    padding-right: 40px;
+  }
+  
+  .demo-image {
+    flex: 1;
+    text-align: center;
+  }
+  
+  .demo-image img {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .code-snippet {
+    background-color: #2b2b2b;
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  
+  .code-snippet code {
+    color: #e0e0e0;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  .animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+  <header id="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+            <li><a href="https://HalfPeopleStudio.com/about">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>HalfUI</h1>
+      <p>輕量級、靈活的游戲UI系統，為您的游戲界面注入生命力</p>
+      <a href="#features" class="cta-button">探索特性</a>
+    </div>
+  </section>
+
+  <main>
+    <section id="features" class="section">
+      <div class="container">
+        <h2 class="section-title">HalfUI 特性</h2>
+        <div class="features">
+          <div class="feature-card">
+            <div class="feature-icon">&#128241;</div>
+            <h3>響應式佈局</h3>
+            <p>自動適應不同屏幕尺寸和分辨率，確保最佳的用戶體驗。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#127912;</div>
+            <h3>豐富的動畫效果</h3>
+            <p>內置多種動畫效果，讓您的UI更加生動有趣。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#128396;</div>
+            <h3>主題定製</h3>
+            <p>輕鬆創建和切換主題，實現個性化的UI風格。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#128203;</div>
+            <h3>靈活的佈局系統</h3>
+            <p>支持多種佈局方式，包括網格、彈性盒和自由佈局。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#128640;</div>
+            <h3>高性能</h3>
+            <p>優化的渲染和更新機制，確保流暢的UI體驗。</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">&#128295;</div>
+            <h3>易於擴展</h3>
+            <p>模塊化設計，方便開發者添加自定義控件和功能。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <div class="container">
+        <h2 class="section-title">HalfUI 演示</h2>
+        <div class="demo-container">
+          <div class="demo-text">
+            <h3>簡單易用的API</h3>
+            <p>HalfUI 提供直觀的API，讓您快速構建游戲界面。以下是一個簡單的示例：</p>
+            <div class="code-snippet">
+              <code>
+#include "HalfUI.h"
+
+// 創建一個按鈕
+auto button = HalfUI::Button::create("開始游戲");
+button->setPosition(100, 100);
+button->setSize(200, 50);
+button->setOnClickListener([]() {
+    startGame();
+});
+
+// 添加到UI層
+uiLayer->addChild(button);
+              </code>
+            </div>
+          </div>
+          <div class="demo-image">
+            <img src="https://HalfPeopleStudio.com/images/halfui-demo.png" alt="HalfUI 演示界面" width="500" height="300">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">為什麼選擇 HalfUI？</h2>
+        <div class="features">
+          <div class="feature-card">
+            <h3>輕量級</h3>
+            <p>HalfUI 核心庫體積小巧，不會為您的游戲增加過多負擔。</p>
+          </div>
+          <div class="feature-card">
+            <h3>跨平台</h3>
+            <p>支持多種平台，包括 Windows、macOS、iOS、Android 等。</p>
+          </div>
+          <div class="feature-card">
+            <h3>優秀的性能</h3>
+            <p>經過優化的渲染和更新機制，確保高效的UI運行。</p>
+          </div>
+          <div class="feature-card">
+            <h3>豐富的文檔</h3>
+            <p>詳細的API文檔和教程，幫助您快速上手和深入學習。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">立即開始</h2>
+        <p style="text-align: center; margin-bottom: 30px;">加入 HalfUI 社區，開啟您的游戲UI開發之旅！</p>
+        <div style="text-align: center;">
+          <a href="https://HalfPeopleStudio.com/tools/halfui/download" class="cta-button">下載 HalfUI</a>
+          <a href="https://HalfPeopleStudio.com/tools/halfui/docs" class="cta-button" style="margin-left: 20px;">查看文檔</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.getElementById('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(animateOnScroll, {
+        root: null,
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.feature-card, .demo-text, .demo-image').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

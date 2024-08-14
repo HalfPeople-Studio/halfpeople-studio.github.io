@@ -1,0 +1,407 @@
+<html><head><base link rel="icon" type="img/HP_LOGO2.ico"href="http://halfpeoplestudio.lol/">
+  <link rel="icon" type="image/x-icon" href="img/HP_LOGO2.ico">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半個人科技 - 獨立游戲開發與創新工具</title>
+<style>
+  :root {
+    --primary-color: #0a0a0a;
+    --secondary-color: #1a1a1a;
+    --accent-color: #00ffff;
+    --text-color: #e0e0e0;
+    --highlight-color: #00ffcc;
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-image:url('img/wallpaper3.jpg');
+    background-color: rgba(0, 0, 0, 0.373);
+    background-blend-mode:color ;
+    background-size:cover;
+    background-attachment:fixed ;
+    transition: backdrop-filter 1s ease;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgb(0, 0, 0);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    background-image: url('https://HalfPeopleStudio.com/images/about-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .section {
+    padding: 80px 0;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin-bottom: 50px;
+    color: var(--accent-color);
+  }
+  
+  .about-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .about-text {
+    flex: 1;
+    min-width: 300px;
+    padding-right: 40px;
+  }
+  
+  .about-image {
+    flex: 1;
+    min-width: 300px;
+    text-align: center;
+  }
+  
+  .about-image img {
+    max-width: 100%;
+  }
+  
+  .mission-vision {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 40px;
+    margin-top: 60px;
+  }
+  
+  .mission-vision h3 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+  }
+  
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+  }
+  
+  .team-member {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  
+  .team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(74, 144, 226, 0.1);
+  }
+  
+  .team-member img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+  }
+  
+  .team-member h3 {
+    color: var(--accent-color);
+    margin-bottom: 10px;
+  }
+  
+  .cta-section {
+    background: linear-gradient(135deg, #0077ff, #00ffdd);
+    text-align: center;
+    padding: 80px 0;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--highlight-color);
+    color: var(--primary-color);
+    padding: 12px 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 30px;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.8);
+  }
+  
+  .modal-content {
+    background-color: var(--primary-color);
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid var(--accent-color);
+    width: 70%;
+    max-width: 700px;
+    border-radius: 10px;
+    position: relative;
+  }
+  
+  .close {
+    color: var(--accent-color);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: var(--highlight-color);
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .modal-header {
+    padding: 2px 16px;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+  }
+  
+  .modal-body {
+    padding: 2px 16px;
+    margin-top: 20px;
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="zh/"><img src="img/HPTG3.png" width="250" height="85"></a>
+        <nav>
+          <ul>
+            <li><a href="zh/">首頁</a></li>
+            <li><a href="zh/game/">游戲</a></li>
+            <li><a href="zh/Engine/">游戲引擎</a></li>
+            <li><a href="zh/software/">軟件</a></li>
+            <li><a href="zh/lib/">工具庫</a></li>
+            <li><a href="zh/blog/">博客</a></li>
+            <li><a href="zh/about/">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>關於半個人科技</h1>
+      <p>創新獨立游戲開發的先鋒</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">我們的故事</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>HalfPeopleStudio成立於2019年，由一群充滿激情的游戲玩家組成。我們的名字"HalfPeople"代表著我們對人工智能和人類創造力結合的追求，象征著科技與藝術的完美融合。</p>
+          <p>在短短幾年內，我們從一個什麽都不懂的小白到現在。我們不僅創造了多款小游戲，還開發了自己的游戲引擎。</p>
+          <p>我們相信，真正優秀的游戲源於創新的思維和精湛的技術。因此，我們不斷挑戰自我，探索游戲設計和技術實現的新可能性。。</p>
+        </div>
+        <div class="about-image">
+          <img src="img/HPTG2.png" alt="半人工作室" >
+        </div>
+      </div>
+      
+      <div class="mission-vision">
+        <h3>我們的使命</h3>
+        <p>通過創新的游戲設計和尖端技術，創造出能夠啟發、娛樂並豐富玩家生活的游戲體驗。。</p>
+        <h3>我們的願景</h3>
+        <p>成為有收入的獨立游戲開發工作室。。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">核心團隊</h2>
+      <div class="team-grid">
+        <div class="team-member">
+          <a href="zh/about/People1/"><img src="https://avatars.githubusercontent.com/u/56476339?v=4" alt="半個人 - 首席開發者" class="team-image" width="200" height="200"></a>
+          <h3>半個人</h3>
+          <p>首席開發者</p>
+          <p>首席開發者,創意總監,技術美術,創辦人 </p>。
+          <p>專注於游戲引擎核心架構設計和性能優化,游戲概念設計,整體藝術風格把控。 從19年開始游戲開發/</p>
+        </div>
+        <div class="team-member">
+          <a href="zh/about/People2/"><img src="https://avatars.githubusercontent.com/u/92320290?v=4" alt="奶爺 - 技術美術" class="team-image" width="200" height="200"></a>
+          <h3>奶爺</h3>
+          <p>創意總監,美術設計</p>
+          <p>負責游戲概念設計和整體藝術風格把控和少量的代碼開發。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="cta-section">
+    <div class="container">
+      <h2>我們始終在尋找充滿激情和才華的游戲想法！</h2>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 Half People Technology。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <div id="teamModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <div class="modal-header">
+        <h2 id="modalTitle"></h2>
+      </div>
+      <div class="modal-body">
+        <p id="modalDescription"></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 150) {
+          document.body.style.backdropFilter = "blur(35px)";
+        } else {
+          document.body.style.backdropFilter = "blur(0px)";
+        }
+      });
+      
+      const teamMembers = document.querySelectorAll('.team-member');
+      teamMembers.forEach(member => {
+        member.addEventListener('mouseover', function() {
+          this.style.transform = 'translateY(-10px)';
+        });
+        member.addEventListener('mouseout', function() {
+          this.style.transform = 'translateY(0)';
+        });
+      });
+    });
+
+    // Modal functionality
+    const modal = document.getElementById("teamModal");
+    const span = document.getElementsByClassName("close")[0];
+
+
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<html><head><base href="https://HalfPeopleStudio.com/blog/submit">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半人工作室 - 提交您的博客</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #4a90e2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .submit-hero {
+    background: var(--gradient-1);
+    padding: 100px 0 50px;
+    text-align: center;
+  }
+  
+  .submit-hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--secondary-color);
+  }
+  
+  .submit-hero p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto 20px;
+  }
+  
+  .submit-form {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 40px;
+    margin-top: 50px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--accent-color);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+  }
+  
+  textarea {
+    height: 200px;
+    resize: vertical;
+  }
+  
+  .submit-button {
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .submit-button:hover {
+    background-color: var(--highlight-color);
+  }
+  
+  .guidelines {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 30px;
+    margin-top: 50px;
+  }
+  
+  .guidelines h2 {
+    color: var(--accent-color);
+    margin-bottom: 20px;
+  }
+  
+  .guidelines ul {
+    padding-left: 20px;
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .submit-form,
+    .guidelines {
+      padding: 20px;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+            <li><a href="https://HalfPeopleStudio.com/about">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="submit-hero">
+    <div class="container">
+      <h1>提交您的博客</h1>
+      <p>分享您的技術洞察，成為我們開放技術博客平台的一份子</p>
+    </div>
+  </section>
+
+  <div class="container">
+    <form class="submit-form" id="blogSubmitForm">
+      <div class="form-group">
+        <label for="title">博客標題</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="author">作者姓名</label>
+        <input type="text" id="author" name="author" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="email">電子郵箱</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="category">分類</label>
+        <select id="category" name="category" required>
+          <option value="">選擇分類</option>
+          <option value="game-development">游戲開發</option>
+          <option value="ai-ml">人工智能與機器學習</option>
+          <option value="blockchain">區塊鏈技術</option>
+          <option value="cybersecurity">網絡安全</option>
+          <option value="data-science">數據科學</option>
+          <option value="web-development">Web 開發</option>
+          <option value="mobile-development">移動應用開發</option>
+          <option value="iot">物聯網</option>
+          <option value="cloud-computing">雲計算</option>
+          <option value="other">其他</option>
+        </select>
+      </div>
+      
+      <div class="form-group">
+        <label for="tags">標籤（用逗號分隔）</label>
+        <input type="text" id="tags" name="tags" placeholder="例如：AI, 深度學習, 神經網絡">
+      </div>
+      
+      <div class="form-group">
+        <label for="content">博客內容</label>
+        <textarea id="content" name="content" required></textarea>
+      </div>
+      
+      <button type="submit" class="submit-button">提交博客</button>
+    </form>
+
+    <div class="guidelines">
+      <h2>博客提交指南</h2>
+      <ul>
+        <li>確保您的博客內容原創，並且未在其他平台發表過。</li>
+        <li>博客長度建議在 1000-3000 字之間。</li>
+        <li>請使用清晰、簡潔的語言，並注意文章的結構和邏輯性。</li>
+        <li>如果您的文章包含代碼示例，請確保代碼格式正確且易於理解。</li>
+        <li>請在文章中提供相關的參考資料或鏈接，以支持您的觀點。</li>
+        <li>我們鼓勵深入探討技術主題，但請確保內容對讀者友好且易於理解。</li>
+        <li>審核過程可能需要 3-5 個工作日，請耐心等待。</li>
+        <li>如果您的博客被接受，我們會通過電子郵件通知您。</li>
+        <li>我們保留編輯和修改提交內容的權利，以確保質量和一致性。</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+      <div class="social-icons" style="margin-top: 20px;">
+        <a href="https://twitter.com/HalfPeopleStudio" target="_blank" title="Twitter" style="margin: 0 10px;">🐦</a>
+        <a href="https://facebook.com/HalfPeopleStudio" target="_blank" title="Facebook" style="margin: 0 10px;">📘</a>
+        <a href="https://github.com/HalfPeopleStudio" target="_blank" title="GitHub" style="margin: 0 10px;">🐙</a>
+        <a href="https://www.youtube.com/HalfPeopleStudio" target="_blank" title="YouTube" style="margin: 0 10px;">🎥</a>
+        <a href="https://discord.gg/HalfPeopleStudio" target="_blank" title="Discord" style="margin: 0 10px;">💬</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        } else {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        }
+      });
+
+      const form = document.getElementById('blogSubmitForm');
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        // 在這裡添加表單提交邏輯，例如 AJAX 請求或其他處理方式
+        alert('感謝您的提交！我們將盡快審核您的博客。');
+        form.reset();
+      });
+
+      // 添加滾動動畫
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(animateOnScroll, {
+        root: null,
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.submit-form, .guidelines').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

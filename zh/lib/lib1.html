@@ -1,0 +1,374 @@
+<html><head><base href="https://HalfPeopleStudio.com/tools/halfai">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>半人工作室 - HalfAI</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #4a90e2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-2: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  header.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .hero {
+    height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background-image: url('https://HalfPeopleStudio.com/images/halfai-hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+  }
+  
+  .hero-content {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+  }
+  
+  .hero p {
+    font-size: 1.2em;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .section-title {
+    text-align: center;
+    font-size: 2.5em;
+    margin: 50px 0 30px;
+    color: var(--accent-color);
+  }
+  
+  .features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 50px 0;
+  }
+  
+  .feature-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .feature-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: var(--gradient-1);
+    opacity: 0.1;
+    transform: rotate(30deg);
+    z-index: -1;
+    transition: all 0.5s ease;
+  }
+  
+  .feature-card:hover::before {
+    transform: rotate(0deg);
+    opacity: 0.2;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(74, 144, 226, 0.1);
+  }
+  
+  .feature-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  }
+  
+  .feature-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 15px;
+    color: var(--secondary-color);
+  }
+  
+  .feature-card p {
+    margin-bottom: 20px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 10px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .cta-button:hover {
+    background-color: var(--text-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(74, 144, 226, 0.3);
+  }
+  
+  .demo-section {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 50px 0;
+    margin: 50px 0;
+  }
+  
+  .demo-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .demo-text {
+    flex: 1;
+    padding-right: 50px;
+  }
+  
+  .demo-video {
+    flex: 1;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+  }
+  
+  .demo-video iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+  }
+  
+  .animate {
+    animation: fadeInUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+  <header id="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+            <li><a href="https://HalfPeopleStudio.com/about">關於我們</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>HalfAI</h1>
+      <p>全面提升游戲AI開發體驗，創造智能、有趣的NPC和敵人AI</p>
+    </div>
+  </section>
+
+  <main class="container">
+    <section class="features">
+      <div class="feature-card">
+        <img src="https://HalfPeopleStudio.com/images/behavior-tree-icon.png" alt="行為樹圖標" class="feature-icon" width="80" height="80">
+        <h3>高級行為樹</h3>
+        <p>提供直觀的可視化編輯器，輕鬆創建複雜的AI行為邏輯。支持條件節點、並行執行和動態調整。</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://HalfPeopleStudio.com/images/pathfinding-icon.png" alt="尋路算法圖標" class="feature-icon" width="80" height="80">
+        <h3>智能尋路系統</h3>
+        <p>集成多種高效尋路算法，包括A*、Theta*和動態尋路。支持大規模地圖和動態障礙物。</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://HalfPeopleStudio.com/images/decision-making-icon.png" alt="決策系統圖標" class="feature-icon" width="80" height="80">
+        <h3>靈活決策系統</h3>
+        <p>結合模糊邏輯和效用AI，實現智能決策。可根據多個因素動態調整AI行為，提高游戲體驗。</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://HalfPeopleStudio.com/images/perception-icon.png" alt="感知系統圖標" class="feature-icon" width="80" height="80">
+        <h3>先進感知系統</h3>
+        <p>模擬真實的視覺、聽覺和觸覺感知。支持環境分析、目標識別和威脅評估，創造更真實的AI反應。</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://HalfPeopleStudio.com/images/machine-learning-icon.png" alt="機器學習圖標" class="feature-icon" width="80" height="80">
+        <h3>機器學習整合</h3>
+        <p>提供簡單易用的機器學習工具，支持強化學習和監督學習。讓AI能夠從玩家行為中學習和適應。</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://HalfPeopleStudio.com/images/profiler-icon.png" alt="性能分析圖標" class="feature-icon" width="80" height="80">
+        <h3>AI性能優化</h3>
+        <p>內置性能分析工具，幫助開發者識別和解決AI瓶頸。支持多線程和GPU加速，確保高效運行。</p>
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <div class="container">
+        <h2 class="section-title">HalfAI 實戰演示</h2>
+        <div class="demo-content">
+          <div class="demo-text">
+            <p>觀看我們的演示視頻，了解HalfAI如何在實際游戲開發中應用。這個演示展示了複雜的NPC行為、動態戰鬥AI以及大規模群體模擬。</p>
+            <p>通過HalfAI，您可以輕鬆創建智能、有趣且富有挑戰性的游戲AI，為玩家帶來身臨其境的游戲體驗。</p>
+            <a href="https://HalfPeopleStudio.com/tools/halfai/docs" class="cta-button">查看文檔</a>
+          </div>
+          <div class="demo-video">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.getElementById('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      });
+      
+      const animateOnScroll = (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(animateOnScroll, {
+        root: null,
+        threshold: 0.1
+      });
+
+      document.querySelectorAll('.feature-card, .demo-content').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
+</body>
+</html>

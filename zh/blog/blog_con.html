@@ -1,0 +1,393 @@
+<html><head><base href="https://HalfPeopleStudio.com/blog/quantum-cryptography">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>量子計算在密碼學中的應用與挑戰 - 半人工作室博客</title>
+<style>
+  :root {
+    --primary-color: #1a1a1a;
+    --secondary-color: #f0f0f0;
+    --accent-color: #4a90e2;
+    --text-color: #e0e0e0;
+    --highlight-color: #ff6b6b;
+    --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --code-bg-color: #2d2d2d;
+  }
+  
+  body {
+    font-family: 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  
+  header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+  }
+  
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+  }
+  
+  .logo {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  
+  nav ul li {
+    margin-left: 20px;
+  }
+  
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+  
+  .blog-post {
+    padding-top: 100px;
+  }
+  
+  .blog-post h1 {
+    font-size: 2.5em;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+  }
+  
+  .blog-post-meta {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    margin-bottom: 30px;
+  }
+  
+  .blog-content {
+    font-size: 1.1em;
+    line-height: 1.8;
+  }
+  
+  .blog-content h2 {
+    color: var(--highlight-color);
+    margin-top: 40px;
+  }
+  
+  .blog-content p {
+    margin-bottom: 20px;
+  }
+  
+  .blog-content ul, .blog-content ol {
+    margin-bottom: 20px;
+    padding-left: 30px;
+  }
+  
+  .blog-content img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+  }
+  
+  pre {
+    background-color: var(--code-bg-color);
+    border-radius: 5px;
+    padding: 15px;
+    overflow-x: auto;
+    font-size: 0.9em;
+  }
+  
+  code {
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  blockquote {
+    border-left: 4px solid var(--accent-color);
+    padding-left: 20px;
+    margin: 20px 0;
+    font-style: italic;
+    color: var(--secondary-color);
+  }
+  
+  .tags {
+    margin-top: 40px;
+  }
+  
+  .tag {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin-right: 10px;
+    font-size: 0.9em;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  .tag:hover {
+    background-color: var(--highlight-color);
+  }
+  
+  .author-info {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+  }
+  
+  .author-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+  
+  .author-bio h3 {
+    margin: 0 0 10px 0;
+    color: var(--accent-color);
+  }
+  
+  .author-bio p {
+    margin: 0;
+    font-size: 0.9em;
+  }
+  
+  .related-posts {
+    margin-top: 50px;
+  }
+  
+  .related-posts h2 {
+    color: var(--highlight-color);
+    margin-bottom: 20px;
+  }
+  
+  .related-posts ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .related-posts li {
+    margin-bottom: 10px;
+  }
+  
+  .related-posts a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .related-posts a:hover {
+    color: var(--highlight-color);
+  }
+  
+  footer {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: var(--text-color);
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 50px;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 15px;
+    }
+    
+    .blog-post h1 {
+      font-size: 2em;
+    }
+    
+    .blog-content {
+      font-size: 1em;
+    }
+  }
+</style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="https://HalfPeopleStudio.com" class="logo">半人工作室</a>
+        <nav>
+          <ul>
+            <li><a href="https://HalfPeopleStudio.com/">首頁</a></li>
+            <li><a href="https://HalfPeopleStudio.com/games">游戲</a></li>
+            <li><a href="https://HalfPeopleStudio.com/engine">游戲引擎</a></li>
+            <li><a href="https://HalfPeopleStudio.com/tools">工具庫</a></li>
+            <li><a href="https://HalfPeopleStudio.com/blog">博客</a></li>
+            <li><a href="https://HalfPeopleStudio.com/forum">討論區</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h1>量子計算在密碼學中的應用與挑戰</h1>
+      <div class="blog-post-meta">
+        作者：趙六 | 發布日期：2023年6月20日 | 分類：密碼學, 量子計算
+      </div>
+      <div class="blog-content">
+        <p>隨著量子計算機的快速發展，傳統密碼學面臨著前所未有的挑戰。本文將深入探討量子計算對現有密碼系統的潛在威脅，以及後量子密碼學的最新進展。我們還將討論如何為即將到來的量子時代做好準備。</p>
+
+        <h2>量子計算的基本原理</h2>
+        <p>量子計算利用量子力學的原理，如疊加和糾纏，來進行並行計算。這使得某些特定類型的問題可以比經典計算機更快地解決。</p>
+        
+        <pre><code>// 量子比特的疊加狀態示例
+|ψ⟩ = α|0⟩ + β|1⟩
+其中 |α|² + |β|² = 1</code></pre>
+
+        <h2>量子計算對傳統密碼學的威脅</h2>
+        <p>量子計算機對現有的公鑰加密系統構成了嚴重威脅，尤其是那些依賴於整數分解和離散對數問題的系統。</p>
+        
+        <ul>
+          <li>RSA加密：可能被Shor算法破解</li>
+          <li>橢圓曲線加密：同樣面臨Shor算法的威脅</li>
+          <li>對稱加密：需要增加密鑰長度以抵禦Grover算法</li>
+        </ul>
+
+        <blockquote>
+          "量子計算機的出現將徹底改變我們對信息安全的認知。" - 彼得·肖爾
+        </blockquote>
+
+        <h2>後量子密碼學的發展</h2>
+        <p>為了應對量子計算的挑戰，密碼學家們正在開發新的加密方法，這些方法即使在量子計算機面前也能保持安全。</p>
+        
+        <ol>
+          <li>基於格的密碼系統</li>
+          <li>多變量公鑰密碼系統</li>
+          <li>基於哈希的簽名方案</li>
+          <li>基於編碼理論的密碼系統</li>
+        </ol>
+
+        <h2>量子密鑰分發（QKD）</h2>
+        <p>量子密鑰分發是一種利用量子力學原理來保證通信安全的方法。它允許兩方生成一個共享的隨機密鑰，該密鑰可用於加密消息。</p>
+
+        <img src="https://HalfPeopleStudio.com/images/quantum-key-distribution.svg" alt="量子密鑰分發示意圖" width="600" height="400">
+
+        <h2>未來的挑戰與機遇</h2>
+        <p>雖然量子計算對現有密碼系統構成了威脅，但它也為密碼學帶來了新的機遇。未來的研究方向包括：</p>
+        
+        <ul>
+          <li>開發和標準化後量子密碼算法</li>
+          <li>提高量子密鑰分發系統的實用性</li>
+          <li>探索量子隨機數生成器在密碼學中的應用</li>
+          <li>研究量子安全的區塊鏈技術</li>
+        </ul>
+
+        <h2>結論</h2>
+        <p>量子計算在密碼學領域既是挑戰也是機遇。雖然它威脅著現有的加密系統，但也推動了新一代安全技術的發展。密碼學家、安全專家和技術決策者需要共同努力，為即將到來的量子時代做好準備，確保我們的數字世界在未來仍然安全可靠。</p>
+      </div>
+
+      <div class="tags">
+        <a href="https://HalfPeopleStudio.com/blog/tags/quantum-computing" class="tag">量子計算</a>
+        <a href="https://HalfPeopleStudio.com/blog/tags/cryptography" class="tag">密碼學</a>
+        <a href="https://HalfPeopleStudio.com/blog/tags/cybersecurity" class="tag">網絡安全</a>
+        <a href="https://HalfPeopleStudio.com/blog/tags/post-quantum" class="tag">後量子</a>
+      </div>
+
+      <div class="author-info">
+        <img src="https://HalfPeopleStudio.com/images/authors/zhao-liu.jpg" alt="趙六的頭像" class="author-avatar" width="80" height="80">
+        <div class="author-bio">
+          <h3>關於作者：趙六</h3>
+          <p>趙六是一位資深的密碼學研究員，專注於量子密碼學和後量子加密算法的研究。他在多個國際會議上發表過論文，並參與了多項國家級的密碼學標準制定工作。</p>
+        </div>
+      </div>
+
+      <div class="related-posts">
+        <h2>相關文章</h2>
+        <ul>
+          <li><a href="https://HalfPeopleStudio.com/blog/quantum-computing-basics">量子計算基礎：從理論到實踐</a></li>
+          <li><a href="https://HalfPeopleStudio.com/blog/blockchain-quantum-resistance">區塊鏈如何應對量子計算的挑戰</a></li>
+          <li><a href="https://HalfPeopleStudio.com/blog/future-of-encryption">加密技術的未來：後量子時代的安全策略</a></li>
+        </ul>
+      </div>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2023 半人工作室。保留所有權利。</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.querySelector('header');
+      
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+        } else {
+          header.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+        }
+      });
+
+      // 添加平滑滾動效果
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+          });
+        });
+      });
+
+      // 代碼塊語法高亮
+      document.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightBlock(block);
+      });
+
+      // 圖片懶加載
+      const images = document.querySelectorAll('img[data-src]');
+      const config = {
+        rootMargin: '0px 0px 50px 0px',
+        threshold: 0
+      };
+
+      let observer = new IntersectionObserver((entries, self) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            let img = entry.target;
+            img.src = img.dataset.src;
+            self.unobserve(img);
+          }
+        });
+      }, config);
+
+      images.forEach(img => {
+        observer.observe(img);
+      });
+    });
+  </script>
+</body>
+</html>
