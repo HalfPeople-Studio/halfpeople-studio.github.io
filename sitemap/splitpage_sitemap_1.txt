@@ -7,7 +7,7 @@ https://halfpeoplestudio.lol/zh/lib/
 https://halfpeoplestudio.lol/zh/blog/
 https://halfpeoplestudio.lol/zh/about/
 https://halfpeoplestudio.lol/zh/game/FRcarnival/
-https://halfpeoplestudio.lol/zh/software/app/AIJp/
-https://halfpeoplestudio.lol/zh/about/People1/
 https://halfpeoplestudio.lol/zh/about/People2/
+https://halfpeoplestudio.lol/zh/about/People1/
+https://halfpeoplestudio.lol/zh/software/app/AIJp/
 https://halfpeoplestudio.lol/cdn-cgi/l/email-protection

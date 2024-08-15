@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:mobile="http://www.baidu.com/schemas/sitemap-mobile/1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Created By http://www.zhetao.com/sitemapcreator, URLs: 13 Page: 1 Generated at: 2024-08-15 09:27:42 -->
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/game/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/Engine/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/software/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/lib/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/blog/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/about/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/</loc>
+    <priority>1.00</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/about/People2/</loc>
+    <priority>0.81</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/about/People1/</loc>
+    <priority>0.80</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/software/app/AIJp/</loc>
+    <priority>0.79</priority>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/cdn-cgi/l/email-protection</loc>
+    <priority>0.73</priority>
+  </url>
+
+</urlset>

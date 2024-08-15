@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  <!-- Created By http://www.zhetao.com/sitemapcreator,  URLs: 13 Generated at: 2024-08-15 09:27:42 -->
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/</loc>
+    <priority>1.00</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/img/HEM.jpg</image:loc>
+<image:caption>半個人科技游戲引擎界面</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/img/FRcarnival/FRcarnival_long.png</image:loc>
+<image:caption>竞速嘉年华</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/img/HP_LOGO2.png</image:loc>
+<image:caption>HalfMath圖標</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/img/HImGuiAnimation.png</image:loc>
+<image:caption>HalfMath圖標</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/img/harrow.png</image:loc>
+<image:caption>HalfPhysics圖標</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/img/earp.png</image:loc>
+<image:caption>HalfAI圖標</image:caption>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/</loc>
+    <priority>1.00</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/img/HEM.jpg</image:loc>
+<image:caption>半個人科技游戲引擎界面</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/img/FRcarnival/FRcarnival_long.png</image:loc>
+<image:caption>竞速嘉年华</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/img/HP_LOGO2.png</image:loc>
+<image:caption>HalfMath圖標</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/img/HImGuiAnimation.png</image:loc>
+<image:caption>HalfMath圖標</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/img/harrow.png</image:loc>
+<image:caption>HalfPhysics圖標</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/img/earp.png</image:loc>
+<image:caption>HalfAI圖標</image:caption>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/game/</loc>
+    <priority>1.00</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/img/FRcarnival/FRcarnival_long.png</image:loc>
+<image:caption>竞速嘉年华</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/img/Universe/UniverseX.png</image:loc>
+<image:caption>竞速嘉年华截圖</image:caption>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/Engine/</loc>
+    <priority>1.00</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/Engine/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/Engine/img/HEM.jpg</image:loc>
+<image:caption>使用HalfEngine開發的3D冒險游戲</image:caption>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/software/</loc>
+    <priority>1.00</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/software/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/software/img/HP_LOGO2.png</image:loc>
+<image:caption>HalfMath圖標</image:caption>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/lib/</loc>
+    <priority>1.00</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/lib/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/lib/img/HImGuiAnimation.png</image:loc>
+<image:caption>HalfMath圖標</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/lib/img/HP_LOGO2.png</image:loc>
+<image:caption>HalfRender圖標</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/lib/img/harrow.png</image:loc>
+<image:caption>HalfPhysics圖標</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/lib/img/earp.png</image:loc>
+<image:caption>HalfAI圖標</image:caption>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/blog/</loc>
+    <priority>1.00</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/blog/img/HPTG3.png</image:loc>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/about/</loc>
+    <priority>1.00</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/about/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/about/img/HPTG2.png</image:loc>
+<image:caption>半人工作室</image:caption>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/</loc>
+    <priority>1.00</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/img/FRcarnival/1.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/img/FRcarnival/2.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/img/FRcarnival/3.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/img/FRcarnival/4.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/img/FRcarnival/5.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/img/FRcarnival/6.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/img/FRcarnival/7.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/game/FRcarnival/img/FRcarnival/8.jpg</image:loc>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/about/People2/</loc>
+    <priority>0.81</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/about/People2/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/about/People2/img/FRcarnival/FRcarnival.jpg</image:loc>
+<image:caption>HalfEngine</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/about/People2/img/Universe/wallpaperX.jpg</image:loc>
+<image:caption>HImGuiEditor</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/about/People2/img/GDL.png</image:loc>
+<image:caption>水星魔女</image:caption>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/about/People1/</loc>
+    <priority>0.80</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/about/People1/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/about/People1/img/half_engine_bg.png</image:loc>
+<image:caption>HalfEngine</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/about/People1/img/HP_LOGO2.png</image:loc>
+<image:caption>HImGuiEditor</image:caption>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/about/People1/img/game project.png</image:loc>
+<image:caption>末日後遺症</image:caption>
+</image:image>
+  </url>
+
+  <url>
+    <loc>https://halfpeoplestudio.lol/zh/software/app/AIJp/</loc>
+    <priority>0.79</priority>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/software/app/AIJp/img/HPTG3.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/software/app/AIJp/img/AIJp/5.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/software/app/AIJp/img/AIJp/1.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/software/app/AIJp/img/AIJp/2.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/software/app/AIJp/img/AIJp/4.png</image:loc>
+</image:image>
+<image:image>
+<image:loc>https://halfpeoplestudio.lol/zh/software/app/AIJp/img/AIJp/3.png</image:loc>
+</image:image>
+  </url>
+
+</urlset>
