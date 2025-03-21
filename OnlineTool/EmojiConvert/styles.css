@@ -43,7 +43,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 60px 10px 10px 10px;
-    max-height: calc(100vh - 70px); /* 限制容器高度，留出 margin 和 logo 空間 */
+    max-height: calc(100vh - 70px); /* 限制容器高度 */
     position: relative;
 }
 
@@ -253,10 +253,6 @@ body {
 
 #mode-btn.clicked {
     animation: rotate 0.3s ease forwards;
-}
-
-#mode-btn[title]:hover::after {
-    display: none;
 }
 
 @keyframes rotate {
@@ -590,19 +586,6 @@ body {
     transform: scaleY(1);
 }
 
-@media (max-width: 767px) {
-    .select-options {
-        top: auto;
-        bottom: 100%;
-        transform-origin: top center;
-        transform: scaleY(0);
-    }
-
-    .select-options.show {
-        transform: scaleY(1);
-    }
-}
-
 .option {
     padding: 6px 12px;
     color: #a0a0a0;
@@ -613,63 +596,6 @@ body {
 .option:hover {
     background: rgba(35, 35, 40, 0.9);
     color: #ff6666;
-}
-
-@media (max-width: 767px) {
-    .controls {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .footer {
-        padding: 10px;
-        max-height: 250px;
-        overflow-y: auto;
-    }
-
-    .emoji-ranges, .language-select {
-        width: 100%;
-    }
-
-    .range-select {
-        padding: 6px;
-    }
-
-    .custom-select {
-        width: 100%;
-    }
-
-    .select-trigger {
-        font-size: 0.9em;
-    }
-
-    .select-options {
-        width: 100%;
-        max-height: 120px;
-    }
-}
-
-@media (min-width: 768px) {
-    .logo-area #logo { width: 250px; }
-    .container { width: 90%; margin: 80px 20px 20px 20px; }
-    .main-content { padding: 20px; }
-    .input-output { flex-direction: row; }
-    .pane { height: 300px; padding: 15px; }
-    .mode-label { font-size: 1.2em; }
-    #input, .output-text { font-size: 1.5em; padding: 10px; }
-    #input::placeholder { font-size: 1.2em; }
-    #copy-btn, #paste-btn, #speak-btn { padding: 10px; font-size: 1.2em; }
-    .button-group { gap: 10px; padding-top: 0; }
-    .footer { padding: 20px; overflow-y: visible; }
-    .seed-control { margin-bottom: 20px; }
-    #seed { width: 200px; }
-    #seed:focus { width: 250px; max-width: 350px; }
-    .controls { flex-direction: row; gap: 20px; }
-    .emoji-ranges h3, .language-select h3 { font-size: 1.1em; }
-    .range-select { gap: 8px; }
-    .range-select label { padding: 8px 12px; }
-    .range-select span { gap: 5px; padding: 5px 10px; }
-    .select-trigger { padding: 10px 12px; }
 }
 
 /* 靜音按鈕樣式 */
@@ -699,4 +625,75 @@ body {
 
 .mute-btn .material-icons {
     font-size: 24px;
+}
+
+/* 媒體查詢：小螢幕調整 */
+@media (max-width: 767px) {
+    .container {
+        margin-bottom: calc(20px + env(safe-area-inset-bottom)); /* 增加底部間距，適配導航欄 */
+    }
+
+    .footer {
+        padding: 10px 10px 20px 10px; /* 增加底部內邊距 */
+        max-height: 200px; /* 減小最大高度 */
+        overflow-y: auto;
+    }
+
+    .controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .emoji-ranges, .language-select {
+        width: 100%;
+    }
+
+    .range-select {
+        padding: 6px;
+        max-height: 120px; /* 減小高度 */
+    }
+
+    .custom-select {
+        width: 100%;
+    }
+
+    .select-trigger {
+        font-size: 0.9em;
+    }
+
+    .select-options {
+        width: 100%;
+        max-height: 100px; /* 減小下拉選單高度 */
+        top: auto;
+        bottom: 100%;
+        transform-origin: top center;
+    }
+
+    .select-options.show {
+        transform: scaleY(1);
+    }
+}
+
+/* 媒體查詢：大螢幕調整 */
+@media (min-width: 768px) {
+    .logo-area #logo { width: 250px; }
+    .container { width: 90%; margin: 80px 20px 20px 20px; }
+    .main-content { padding: 20px; }
+    .input-output { flex-direction: row; }
+    .pane { height: 300px; padding: 15px; }
+    .mode-label { font-size: 1.2em; }
+    #input, .output-text { font-size: 1.5em; padding: 10px; }
+    #input::placeholder { font-size: 1.2em; }
+    #copy-btn, #paste-btn, #speak-btn { padding: 10px; font-size: 1.2em; }
+    .button-group { gap: 10px; padding-top: 0; }
+    .footer { padding: 20px; overflow-y: visible; }
+    .seed-control { margin-bottom: 20px; }
+    #seed { width: 200px; }
+    #seed:focus { width: 250px; max-width: 350px; }
+    .controls { flex-direction: row; gap: 20px; }
+    .emoji-ranges h3, .language-select h3 { font-size: 1.1em; }
+    .range-select { gap: 8px; }
+    .range-select label { padding: 8px 12px; }
+    .range-select span { gap: 5px; padding: 5px 10px; }
+    .select-trigger { padding: 10px 12px; }
 }

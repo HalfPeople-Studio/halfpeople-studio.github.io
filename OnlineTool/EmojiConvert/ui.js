@@ -1,9 +1,9 @@
 const translations = {
     "zh-TW": {
-        title: "文字與 Emoji 轉換器",
-        inputPlaceholder: "輸入文本或 Emoji",
+        title: "文字-表情 轉換器",
+        inputPlaceholder: "輸入文本或表情符號",
         seedPlaceholder: "輸入種子",
-        rangesTitle: "Emoji 範圍",
+        rangesTitle: "表情範圍",
         langTitle: "語言",
         pasteTitle: "貼上剪貼板內容",
         copyTitle: "複製結果",
@@ -14,7 +14,7 @@ const translations = {
         pasted: "已貼上",
         playing: "播放中",
         textLabel: "文本",
-        emojiLabel: "Emoji",
+        emojiLabel: "表情符號",
         rangeNames: [
             "😊 基本表情符號", "🌈 核心雜項符號", "🚗 基本交通符號", "✂️ 常用裝飾符號",
             "☀️ 基礎雜項符號", "🐱 動物和自然", "💡 符號和物品", "⚗️ 煉金術符號",
@@ -93,7 +93,7 @@ function updateLanguage() {
     document.getElementById("paste-btn").title = t.pasteTitle;
     document.getElementById("copy-btn").title = t.copyTitle;
     document.getElementById("speak-btn").title = t.speakTitle;
-    document.getElementById("mode-btn").removeAttribute("title"); // 確保移除 title 屬性
+    document.getElementById("mode-btn").removeAttribute("title");
     document.getElementById("input-label").textContent = mode === "textToEmoji" ? t.textLabel : t.emojiLabel;
     document.getElementById("output-label").textContent = mode === "textToEmoji" ? t.emojiLabel : t.textLabel;
     initEmojiRanges();
@@ -170,7 +170,8 @@ function switchMode() {
     outputLabel.style.opacity = "0";
 
     setTimeout(() => {
-        const newInputLabel = mode === "textToEmoji" ? t.textLabel : t.emojiLabel;
+        // 更新標籤
+        const newInputLabel = mode === "textToEmoji" ? t.emojiLabel : t.textLabel;
         const newOutputLabel = mode === "textToEmoji" ? t.textLabel : t.emojiLabel;
         inputLabel.textContent = newInputLabel;
         outputLabel.textContent = newOutputLabel;
@@ -178,9 +179,12 @@ function switchMode() {
         inputLabel.style.opacity = "1";
         outputLabel.style.opacity = "1";
 
-        const outputText = window.lastResult || outputEl.textContent || "";
-        typeText(inputEl, outputText, () => {
+        // 交換內容：將當前輸出放入輸入框
+        const currentOutput = window.lastResult || outputEl.textContent || "";
+        typeText(inputEl, currentOutput, () => {
+            // 切換模式
             mode = mode === "textToEmoji" ? "emojiToText" : "textToEmoji";
+            // 根據新模式重新處理輸入
             processInput();
             isSwitching = false;
         });
@@ -264,28 +268,21 @@ function initCustomSelect() {
     });
 }
 
-// 初始化背景音效控制
 function initBackgroundSound() {
     const audio = document.getElementById('bg-sound');
     const muteBtn = document.getElementById('mute-btn');
     let isMuted = false;
 
-    // 一開始確保音效播放
-    audio.muted = false; // 確保初始狀態為非靜音
-    audio.play().then(() => {
-        console.log("背景音效開始播放");
-    }).catch(err => {
-        console.log("自動播放被阻止:", err);
-        // 如果自動播放失敗，提示用戶交互
-        showFeedback("請點擊頁面以啟動背景音效");
-        document.addEventListener('click', () => {
-            audio.play().then(() => {
-                console.log("用戶交互後背景音效開始播放");
-            });
-        }, { once: true });
-    });
+    showFeedback("請點擊頁面以啟動背景音效");
+    document.addEventListener('click', () => {
+        audio.play().then(() => {
+            console.log("背景音效開始播放");
+        }).catch(err => {
+            console.error("播放失敗:", err);
+            showFeedback("無法播放音效，請重試");
+        });
+    }, { once: true });
 
-    // 靜音按鈕事件
     muteBtn.addEventListener('click', () => {
         isMuted = !isMuted;
         audio.muted = isMuted;
@@ -297,7 +294,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initEmojiRanges();
     updateLanguage();
     initCustomSelect();
-    initBackgroundSound(); // 初始化背景音效
+    initBackgroundSound();
     document.getElementById("input").addEventListener("input", processInput);
     document.getElementById("seed").addEventListener("input", processInput);
     document.getElementById("mode-btn").addEventListener("click", switchMode);
