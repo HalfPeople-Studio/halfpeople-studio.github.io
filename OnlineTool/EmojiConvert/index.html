@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字與 Emoji 轉換器</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="../../img/HP_LOGO2.ico">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <a href="https://halfpeoplestudio.lol" target="_blank" class="logo-area">
+        <img id="logo" src="../../img/HPTG2.png" alt="Half People Studio">
+    </a>
+    <div class="container">
+        <main class="main-content">
+            <div class="input-output">
+                <div class="pane input-pane">
+                    <div class="mode-label" id="input-label">文本</div>
+                    <textarea id="input" placeholder="輸入文本或 Emoji"></textarea>
+                    <div class="button-group">
+                        <button id="paste-btn" title="貼上剪貼板內容"><span class="material-icons">content_paste</span></button>
+                    </div>
+                </div>
+                <div class="mode-switch">
+                    <button id="mode-btn" title="切換模式">⇄</button>
+                </div>
+                <div class="pane output-pane">
+                    <div class="mode-label" id="output-label">Emoji</div>
+                    <div id="output" class="output-text"></div>
+                    <div class="button-group">
+                        <button id="copy-btn" title="複製結果"><span class="material-icons">content_copy</span></button>
+                        <button id="speak-btn" title="語音輸出"><span class="material-icons">volume_up</span></button>
+                    </div>
+                    <div id="feedback" class="feedback"></div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="seed-control">
+                <input type="text" id="seed" placeholder="輸入種子">
+            </div>
+            <div class="controls">
+                <div class="emoji-ranges">
+                    <h3 title="選擇啟用的 Emoji 範圍">Emoji 範圍</h3>
+                    <div id="range-options" class="range-select"></div>
+                </div>
+                <div class="language-select">
+                    <h3>語言</h3>
+                    <div class="custom-select">
+                        <div class="select-trigger" id="language-trigger">English</div>
+                        <div class="select-options" id="language-options">
+                            <div class="option" data-value="en-US">English</div>
+                            <div class="option" data-value="zh-TW">中文</div>
+                            <div class="option" data-value="ja-JP">日本語</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 添加背景音效 -->
+    <audio id="bg-sound" src="audio/BgSoundEffect.wav" loop autoplay></audio>
+
+    <!-- 添加靜音按鈕 -->
+    <button id="mute-btn" class="mute-btn"><span class="material-icons">volume_up</span></button>
+
+    <script src="logic.js"></script>
+    <script src="ui.js"></script>
+    <script>
+        // 控制背景音效的播放與靜音
+        const audio = document.getElementById('bg-sound');
+        const muteBtn = document.getElementById('mute-btn');
+        let isMuted = false;
+
+        muteBtn.addEventListener('click', () => {
+            isMuted = !isMuted;
+            audio.muted = isMuted;
+            muteBtn.innerHTML = `<span class="material-icons">${isMuted ? 'volume_off' : 'volume_up'}</span>`;
+        });
+    </script>
+</body>
+</html>
