@@ -9,7 +9,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden; /* 禁用 body 滾動 */
+    overflow: hidden;
 }
 
 .logo-area {
@@ -43,7 +43,7 @@ body {
     display: flex;
     flex-direction: column;
     margin: 60px 10px 10px 10px;
-    max-height: calc(100vh - 70px); /* 限制容器高度 */
+    max-height: calc(100vh - 70px);
     position: relative;
 }
 
@@ -70,8 +70,8 @@ body {
 
 .main-content {
     padding: 10px;
-    flex: 1; /* 允許內容自適應剩餘空間 */
-    overflow-y: auto; /* 內部滾動 */
+    flex: 1;
+    overflow-y: auto;
 }
 
 .input-output {
@@ -630,12 +630,12 @@ body {
 /* 媒體查詢：小螢幕調整 */
 @media (max-width: 767px) {
     .container {
-        margin-bottom: calc(20px + env(safe-area-inset-bottom)); /* 增加底部間距，適配導航欄 */
+        margin-bottom: calc(20px + env(safe-area-inset-bottom));
     }
 
     .footer {
-        padding: 10px 10px 20px 10px; /* 增加底部內邊距 */
-        max-height: 200px; /* 減小最大高度 */
+        padding: 10px 10px 20px 10px;
+        max-height: 200px;
         overflow-y: auto;
     }
 
@@ -650,7 +650,11 @@ body {
 
     .range-select {
         padding: 6px;
-        max-height: 120px; /* 減小高度 */
+        max-height: 120px;
+    }
+
+    .language-select {
+        margin-bottom: 30px; /* 增加語言選擇下方的空間 */
     }
 
     .custom-select {
@@ -663,7 +667,7 @@ body {
 
     .select-options {
         width: 100%;
-        max-height: 100px; /* 減小下拉選單高度 */
+        max-height: 100px;
         top: auto;
         bottom: 100%;
         transform-origin: top center;
