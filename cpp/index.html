@@ -1,43 +1,4 @@
-<script type="text/javascript">
-        var gk_isXlsx = false;
-        var gk_xlsxFileLookup = {};
-        var gk_fileData = {};
-        function filledCell(cell) {
-          return cell !== '' && cell != null;
-        }
-        function loadFileData(filename) {
-        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
-            try {
-                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
-                var firstSheetName = workbook.SheetNames[0];
-                var worksheet = workbook.Sheets[firstSheetName];
-
-                // Convert sheet to JSON to filter blank rows
-                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
-                // Filter out blank rows (rows where all cells are empty, null, or undefined)
-                var filteredData = jsonData.filter(row => row.some(filledCell));
-
-                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
-                var headerRowIndex = filteredData.findIndex((row, index) =>
-                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
-                );
-                // Fallback
-                if (headerRowIndex === -1 || headerRowIndex > 25) {
-                  headerRowIndex = 0;
-                }
-
-                // Convert filtered JSON back to CSV
-                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
-                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
-                return csv;
-            } catch (e) {
-                console.error(e);
-                return "";
-            }
-        }
-        return gk_fileData[filename] || "";
-        }
-        </script><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -90,16 +51,16 @@
             var hljs = { highlightBlock: function(block) {
                 var language = block.className.split(/\s+/).find(cls => cls.startsWith('language-'))?.replace('language-', '') || 'plaintext';
                 var text = block.textContent;
-                var keywords = 'alignas alignof and and_eq asm auto bitand bitor bool break case catch char char8_t char16_t char32_t class compl concept const constexpr const_cast continue co_await co_return co_yield decltype default delete do double dynamic_cast else enum explicit export extern false float for friend goto if import inline int int8_t int16_t int32_t int64_t long mutable namespace new noexcept not not_eq nullptr operator or or_eq private protected public register reinterpret_cast return short signed sizeof static static_assert static_cast struct switch template this thread_local throw true try typedef typeid typename union unsigned using virtual void volatile wchar_t while xor xor_eq';
+                var keywords = 'alignas alignof and and_eq asm auto bitand bitor bool break case catch char char8_t char16_t char32_t class compl concept const constexpr const_cast continue co_await co_return co_yield decltype default delete do double dynamic_cast else enum explicit export extern false float for friend goto if import inline int int8_t int16_t int32_t int64_t long mutable namespace new noexcept not not_eq nullptr operator or or_eq private protected public register reinterpret_cast return short signed sizeof static static_assert static_cast struct switch template this thread_local throw true try typedef typeid typename union unsigned using virtual void volatile wchar_t while xor xor_eq override';
                 var builtIns = 'cin cout cerr endl string vector set unordered_map array map unordered_set list deque queue stack priority_queue algorithm iterator functional numeric chrono iomanip sstream cmath std';
                 var regexes = [
-                    { pattern: /(\/\/[^\n]*)/, className: 'hljs-comment' },
+                    { pattern: /(\/\/[^\n]*)/, className: 'hljs三人三地注册官网入口hljs-comment' },
                     { pattern: /("[^"]*")/, className: 'hljs-string' },
                     { pattern: /\b\d+(\.\d+)?\b/, className: 'hljs-number' },
                     { pattern: new RegExp(`\\b(${keywords.split(' ').join('|')})\\b`), className: 'hljs-keyword' },
                     { pattern: new RegExp(`\\b(${builtIns.split(' ').join('|')})\\b`), className: 'hljs-built_in' }
                 ];
-                var highlighted = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                var highlighted = text.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>');
                 regexes.forEach(r => {
                     highlighted = highlighted.replace(r.pattern, `<span class="${r.className}">$1</span>`);
                 });
@@ -112,12 +73,13 @@
     </script>
 </head>
 <body>
-    <h1>C++ 標準庫整理 (考試用) ByHalfPeople</h1>
+    <h1>C++ 標準庫整理 (考試用)</h1>
     <p>適用於無網路 VS Code 環境 (C++17)，針對考試快速參考，偏好：開放性 > 運行速度 > 錯誤處理 > 代碼整潔度。</p>
     <div class="nav">
         <a href="#set">std::set</a>
         <a href="#unordered_map">std::unordered_map</a>
         <a href="#vector">std::vector</a>
+        <a href="#virtual">虛擬函數</a>
         <a href="#algorithm">algorithm</a>
         <a href="#string">string/sstream</a>
         <a href="#stdexcept">stdexcept</a>
@@ -131,14 +93,14 @@
     <div class="section" id="set">
         <h2>1. <set> - std::set</h2>
         <p><strong>用途</strong>：有序集合，元素唯一，自動排序（預設升序）。</p>
-        <p><strong>頭文件</strong>：#include &lt;set&gt;</p>
+        <p><strong>頭文件</strong>：#include <set></p>
         <p><strong>基礎用法</strong>：</p>
         <pre><code class="language-cpp">
-std::set&lt;int&gt; s;
+std::set<int> s;
 s.insert(3); // 插入
 s.insert(1); // 自動排序 {1, 3}
 if (s.find(3) != s.end()) {
-    std::cout &lt;&lt; "Found 3\n";
+    std::cout << "Found 3\n";
 }
 s.erase(1); // 刪除
         </code></pre>
@@ -150,14 +112,14 @@ s.erase(1); // 刪除
     <div class="section" id="unordered_map">
         <h2>2. <unordered_map> - std::unordered_map</h2>
         <p><strong>用途</strong>：鍵值對映射，鍵唯一，無序，哈希表。</p>
-        <p><strong>頭文件</strong>：#include &lt;unordered_map&gt;</p>
+        <p><strong>頭文件</strong>：#include <unordered_map></p>
         <p><strong>基礎用法</strong>：</p>
         <pre><code class="language-cpp">
-std::unordered_map&lt;std::string, int&gt; m;
+std::unordered_map<std::string, int> m;
 m["apple"] = 5;
 m.insert({"banana", 3});
 if (m.find("apple") != m.end()) {
-    std::cout &lt;&lt; m["apple"] &lt;&lt; "\n"; // 輸出 5
+    std::cout << m["apple"] << "\n"; // 輸出 5
 }
 m.erase("banana");
         </code></pre>
@@ -169,15 +131,15 @@ m.erase("banana");
     <div class="section" id="vector">
         <h2>3. <vector> - std::vector</h2>
         <p><strong>用途</strong>：動態陣列，支援隨機存取，動態調整大小。</p>
-        <p><strong>頭文件</strong>：#include &lt;vector&gt;</p>
+        <p><strong>頭文件</strong>：#include <vector></p>
         <p><strong>基礎用法</strong>：</p>
         <pre><code class="language-cpp">
-std::vector&lt;int&gt; v = {1, 2, 3};
+std::vector<int> v = {1, 2, 3};
 v.push_back(4);
 v.pop_back();
-std::cout &lt;&lt; v[1] &lt;&lt; "\n"; // 輸出 2
+std::cout << v[1] << "\n"; // 輸出 2
 for (auto it = v.begin(); it != v.end(); ++it) {
-    std::cout &lt;&lt; *it &lt;&lt; " ";
+    std::cout << *it << " ";
 }
         </code></pre>
         <p><strong>特點</strong>：連續記憶體，隨機存取 O(1)，中間操作 O(n)。</p>
@@ -185,38 +147,58 @@ for (auto it = v.begin(); it != v.end(); ++it) {
         <p><strong>優缺點</strong>：靈活 vs. 中間操作效率低。</p>
     </div>
 
-    <div class="section" id="algorithm">
-        <h2>4. <algorithm> - std::sort 等</h2>
-        <p><strong>用途</strong>：排序、查找、操作容器。</p>
-        <p><strong>頭文件</strong>：#include &lt;algorithm&gt;</p>
+    <div class="section" id="virtual">
+        <h2>4. 虛擬函數與覆蓋</h2>
+        <p><strong>用途</strong>：實現多型，子類重寫基類方法。</p>
+        <p><strong>頭文件</strong>：無需額外頭文件。</p>
         <p><strong>基礎用法</strong>：</p>
         <pre><code class="language-cpp">
-std::vector&lt;int&gt; v = {3, 1, 4, 1, 5};
+class Base {
+public:
+    virtual void func() { std::cout << "Base\n"; }
+    virtual ~Base() = default;
+};
+class Derived : public Base {
+public:
+    void func() override { std::cout << "Derived\n"; }
+};
+int main() {
+    Base* ptr = new Derived();
+    ptr->func(); // 輸出 Derived
+    delete ptr;
+}
+        </code></pre>
+        <p><strong>特點</strong>：虛表實現動態分派，override 確保正確覆蓋，虛擬析構避免記憶體問題。</p>
+        <p><strong>考試注意</strong>：基類析構需為虛擬，否則未定義行為。</p>
+        <p><strong>優缺點</strong>：支援多型 vs. 虛表有性能開銷。</p>
+        <p><strong>建議</strong>：簡單題目避免複雜繼承，優先簡單實現。</p>
+    </div>
+
+    <div class="section" id="algorithm">
+        <h2>5. <algorithm> - std::sort 等</h2>
+        <p><strong>用途</strong>：排序、查找、操作容器。</p>
+        <p><strong>頭文件</strong>：#include <algorithm></p>
+        <p><strong>基礎用法</strong>：</p>
+        <pre><code class="language-cpp">
+std::vector<int> v = {3, 1, 4, 1, 5};
 std::sort(v.begin(), v.end()); // 升序 {1, 1, 3, 4, 5}
-std::sort(v.begin(), v.end(), std::greater&lt;int&gt;()); // 降序
+std::sort(v.begin(), v.end(), std::greater<int>()); // 降序
 std::sort(v.begin(), v.end(), [](int a, int b) { return a > b; }); // 自訂
         </code></pre>
-        <p><strong>其他功能</strong>：</p>
-        <ul>
-            <li>std::find(v.begin(), v.end(), x)：查找，返回迭代器。</li>
-            <li>std::min_element(v.begin(), v.end())：最小元素迭代器。</li>
-            <li>std::max_element(v.begin(), v.end())：最大元素迭代器。</li>
-            <li>std::reverse(v.begin(), v.end())：反轉。</li>
-            <li>std::unique(v.begin(), v.end())：去連續重複（需排序）。</li>
-        </ul>
+        <p><strong>其他功能</strong>：std::find, std::min_element, std::max_element, std::reverse, std::unique。</p>
         <p><strong>考試注意</strong>：確保迭代器範圍有效，小數據量可手寫冒泡排序。</p>
         <p><strong>優缺點</strong>：高效（O(n log n)） vs. std::sort 非穩定。</p>
         <p><strong>建議</strong>：優先 std::sort，穩定排序用 std::stable_sort。</p>
     </div>
 
     <div class="section" id="string">
-        <h2>5. <string>, <sstream> - 字串分割</h2>
-        <p><strong>用途</strong>：按空格分隔字串到 std::vector&lt;std::string&gt;。</p>
-        <p><strong>頭文件</strong>：#include &lt;string&gt;, #include &lt;sstream&gt;</p>
+        <h2>6. <string>, <sstream> - 字串分割</h2>
+        <p><strong>用途</strong>：按空格分隔字串到 std::vector<std::string>。</p>
+        <p><strong>頭文件</strong>：#include <string>, #include <sstream></p>
         <p><strong>基礎用法</strong>（stringstream）：</p>
         <pre><code class="language-cpp">
 std::string input = "hello world test";
-std::vector&lt;std::string&gt; words;
+std::vector<std::string> words;
 std::stringstream ss(input);
 std::string word;
 while (ss >> word) {
@@ -226,7 +208,7 @@ while (ss >> word) {
         <p><strong>替代方法</strong>（手動解析）：</p>
         <pre><code class="language-cpp">
 std::string input = "hello world test";
-std::vector&lt;std::string&gt; words;
+std::vector<std::string> words;
 size_t start = 0, end;
 while ((end = input.find(' ', start)) != std::string::npos) {
     words.push_back(input.substr(start, end - start));
@@ -236,65 +218,65 @@ if (start < input.length()) {
     words.push_back(input.substr(start));
 }
         </code></pre>
-        <p><strong>考試注意</strong>：stringstream 簡單，處理多空格；手動解析無需 &lt;sstream&gt;。</p>
+        <p><strong>考試注意</strong>：stringstream 簡單，處理多空格；手動解析無需 <sstream>。</p>
         <p><strong>優缺點</strong>：stringstream 易用 vs. 手動解析靈活。</p>
         <p><strong>建議</strong>：優先 stringstream，考試時間有限。</p>
     </div>
 
     <div class="section" id="stdexcept">
-        <h2>6. <stdexcept> - std::invalid_argument, 異常處理</h2>
+        <h2>7. <stdexcept> - std::invalid_argument, 異常處理</h2>
         <p><strong>用途</strong>：拋出/捕獲錯誤，特別是參數無效。</p>
-        <p><strong>頭文件</strong>：#include &lt;stdexcept&gt;</p>
+        <p><strong>頭文件</strong>：#include <stdexcept></p>
         <p><strong>基礎用法</strong>：</p>
         <pre><code class="language-cpp">
 void processNumber(int x) {
     if (x < 0) throw std::invalid_argument("Negative number not allowed");
-    std::cout &lt;&lt; "Processing: " &lt;&lt; x &lt;&lt; "\n";
+    std::cout << "Processing: " << x << "\n";
 }
 int main() {
     try {
         processNumber(-5);
     } catch (const std::invalid_argument& e) {
-        std::cerr &lt;&lt; "Error: " &lt;&lt; e.what() &lt;&lt; "\n";
+        std::cerr << "Error: " << e.what() << "\n";
     }
 }
         </code></pre>
-        <p><strong>其他方式</strong>：返回值檢查，assert（#include &lt;cassert&gt;）。</p>
+        <p><strong>其他方式</strong>：返回值檢查，assert（#include <cassert>）。</p>
         <p><strong>考試注意</strong>：簡單題目用返回值檢查，複雜題目用異常。</p>
         <p><strong>優缺點</strong>：異常明確 vs. 性能開銷大。</p>
         <p><strong>建議</strong>：參數檢查用 std::invalid_argument，簡單題目用返回值。</p>
     </div>
 
     <div class="section" id="iomanip">
-        <h2>7. <iomanip> - 浮點數精度</h2>
+        <h2>8. <iomanip> - 浮點數精度</h2>
         <p><strong>用途</strong>：控制 std::cout 浮點數輸出格式。</p>
-        <p><strong>頭文件</strong>：#include &lt;iomanip&gt;</p>
+        <p><strong>頭文件</strong>：#include <iomanip></p>
         <p><strong>基礎用法</strong>：</p>
         <pre><code class="language-cpp">
 float num = 3.14159;
-std::cout &lt;&lt; std::fixed &lt;&lt; std::setprecision(2) &lt;&lt; num &lt;&lt; "\n"; // 輸出 3.14
+std::cout << std::fixed << std::setprecision(2) << num << "\n"; // 輸出 3.14
         </code></pre>
         <p><strong>替代方法</strong>（printf）：</p>
         <pre><code class="language-cpp">
 printf("%.2f\n", num);
         </code></pre>
         <p><strong>其他功能</strong>：std::setw(n), std::left, std::right, std::scientific。</p>
-        <p><strong>考試注意</strong>：std::fixed 需 &lt;iomanip&gt;，printf 無需頭文件，float 精度限 6-7 位。</p>
+        <p><strong>考試注意</strong>：std::fixed 需 <iomanip>，printf 無需頭文件，float 精度限 6-7 位。</p>
         <p><strong>優缺點</strong>：std::fixed 標準 vs. printf 簡單。</p>
         <p><strong>建議</strong>：優先 std::fixed，簡單題目用 printf 節省時間。</p>
     </div>
 
     <div class="section" id="chrono">
-        <h2>8. <chrono> - 時間處理</h2>
+        <h2>9. <chrono> - 時間處理</h2>
         <p><strong>用途</strong>：計時、時間差計算，跨平台高精度。</p>
-        <p><strong>頭文件</strong>：#include &lt;chrono&gt;</p>
+        <p><strong>頭文件</strong>：#include <chrono></p>
         <p><strong>基礎用法</strong>：</p>
         <pre><code class="language-cpp">
 auto start = std::chrono::high_resolution_clock::now();
 // 操作
 auto end = std::chrono::high_resolution_clock::now();
-auto duration = std::chrono::duration_cast&lt;std::chrono::milliseconds&gt;(end - start);
-std::cout &lt;&lt; "Time: " &lt;&lt; duration.count() &lt;&lt; " ms\n";
+auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+std::cout << "Time: " << duration.count() << " ms\n";
         </code></pre>
         <p><strong>其他功能</strong>：sleep_for, nanoseconds, microseconds, seconds。</p>
         <p><strong>考試注意</strong>：確認題目需計時，C++11 以上支援。</p>
@@ -303,15 +285,15 @@ std::cout &lt;&lt; "Time: " &lt;&lt; duration.count() &lt;&lt; " ms\n";
     </div>
 
     <div class="section" id="array">
-        <h2>9. <array> - std::array</h2>
+        <h2>10. <array> - std::array</h2>
         <p><strong>用途</strong>：固定大小陣列，替代 C 風格陣列。</p>
-        <p><strong>頭文件</strong>：#include &lt;array&gt;</p>
+        <p><strong>頭文件</strong>：#include <array></p>
         <p><strong>基礎用法</strong>：</p>
         <pre><code class="language-cpp">
-std::array&lt;int, 5&gt; arr = {1, 2, 3, 4, 5};
-std::cout &lt;&lt; arr[2] &lt;&lt; "\n"; // 輸出 3
+std::array<int, 5> arr = {1, 2, 3, 4, 5};
+std::cout << arr[2] << "\n"; // 輸出 3
 for (auto& x : arr) {
-    std::cout &lt;&lt; x &lt;&lt; " ";
+    std::cout << x << " ";
 }
         </code></pre>
         <p><strong>特點</strong>：編譯期固定大小，支援越界檢查（at()）。</p>
@@ -320,27 +302,27 @@ for (auto& x : arr) {
     </div>
 
     <div class="section" id="cmath">
-        <h2>10. <cmath> - 數學運算</h2>
+        <h2>11. <cmath> - 數學運算</h2>
         <p><strong>用途</strong>：三角函數、指數、對數、取整等。</p>
-        <p><strong>頭文件</strong>：#include &lt;cmath&gt;</p>
+        <p><strong>頭文件</strong>：#include <cmath></p>
         <p><strong>基礎用法</strong>：</p>
         <pre><code class="language-cpp">
 double x = 3.14159, y = -4.7;
-std::cout &lt;&lt; std::sin(x) &lt;&lt; "\n"; // 正弦
-std::cout &lt;&lt; std::cos(x) &lt;&lt; "\n"; // 餘弦
-std::cout &lt;&lt; std::sqrt(16.0) &lt;&lt; "\n"; // 平方根
-std::cout &lt;&lt; std::pow(2.0, 3.0) &lt;&lt; "\n"; // 2^3
-std::cout &lt;&lt; std::abs(y) &lt;&lt; "\n"; // 絕對值
-std::cout &lt;&lt; std::floor(y) &lt;&lt; "\n"; // 向下取整
-std::cout &lt;&lt; std::ceil(y) &lt;&lt; "\n"; // 向上取整
-std::cout &lt;&lt; std::round(y) &lt;&lt; "\n"; // 四捨五入
-std::cout &lt;&lt; std::max(5.0, 3.0) &lt;&lt; "\n"; // 最大值
-std::cout &lt;&lt; std::min(5.0, 3.0) &lt;&lt; "\n"; // 最小值
+std::cout << std::sin(x) << "\n"; // 正弦
+std::cout << std::cos(x) << "\n"; // 餘弦
+std::cout << std::sqrt(16.0) << "\n"; // 平方根
+std::cout << std::pow(2.0, 3.0) << "\n"; // 2^3
+std::cout << std::abs(y) << "\n"; // 絕對值
+std::cout << std::floor(y) << "\n"; // 向下取整
+std::cout << std::ceil(y) << "\n"; // 向上取整
+std::cout << std::round(y) << "\n"; // 四捨五入
+std::cout << std::max(5.0, 3.0) << "\n"; // 最大值
+std::cout << std::min(5.0, 3.0) << "\n"; // 最小值
         </code></pre>
         <p><strong>錯誤檢查</strong>：</p>
         <pre><code class="language-cpp">
 if (x < 0) throw std::invalid_argument("sqrt requires non-negative input");
-std::cout &lt;&lt; std::sqrt(x) &lt;&lt; "\n";
+std::cout << std::sqrt(x) << "\n";
         </code></pre>
         <p><strong>考試注意</strong>：檢查輸入範圍，M_PI 可能需 _USE_MATH_DEFINES，簡單題目手寫邏輯。</p>
         <p><strong>優缺點</strong>：功能豐富 vs. 無內建錯誤檢查。</p>
@@ -354,6 +336,7 @@ std::cout &lt;&lt; std::sqrt(x) &lt;&lt; "\n";
             <li>準備模板代碼（如 std::sort、std::fixed）。</li>
             <li>優先高效方法（如 std::sort 替代手寫排序）。</li>
             <li>簡單題目用返回值檢查，複雜題目用 std::invalid_argument。</li>
+            <li class="note">單一 HTML 文件，無需外部檔案，直接開啟瀏覽器查看。</li>
         </ul>
     </div>
 </body>
